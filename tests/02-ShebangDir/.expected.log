@@ -1,0 +1,2161 @@
+-- 1 --
+[builder.com] inf(): builder.com/builder/v0
+[gi0-PINF-it] register(): gi0-PINF-it {
+    "canonical": "builder.com/builder/v0",
+    "aliases": [
+        "builder.com/foo/bar"
+    ]
+}
+[builder.com] inf(): builder3
+[gi0-PINF-it] write(): gi0-PINF-it write() /._dist/wrapper.js /._dist/our-wrapper/._dist/wrapper.js WRAPPER (built)
+[wrapper.com] inf(): wrapper.com/wrapper/v0
+[gi0-PINF-it] register(): gi0-PINF-it {
+    "canonical": "wrapper.com/wrapper/v0",
+    "aliases": [
+        "wrapper.com/foo/bar"
+    ]
+}
+[builder.com] inf(): my-builder
+[wrapper.com] inf(): my-wrapper
+[gi0-PINF-it] write(): gi0-PINF-it write() /._dist/browser.js /._dist/browser.js HELLO WORLD (BUILDER) (built)
+[gi0-PINF-it] write(): gi0-PINF-it write() /._dist/wrapper.js /._dist/wrapper.js [wrapped][Hello World (wrapper)]
+api (main.inf.js) {
+    "/._dist/our-builder|gi0-PINF-it": [
+        {
+            "anchor": [
+                [
+                    {
+                        "literal": "/._dist/our-builder"
+                    }
+                ],
+                [
+                    {
+                        "alias": "gi0-PINF-it",
+                        "resolved": "gi0-PINF-it"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0-PINF-it",
+                    "resolved": "gi0-PINF-it"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] register():",
+                "NS": "gi0-PINF-it",
+                "value": {
+                    "canonical": "builder.com/builder/v0",
+                    "aliases": [
+                        "builder.com/foo/bar"
+                    ]
+                }
+            }
+        }
+    ],
+    "/._dist/our-wrapper|gi0-PINF-it": [
+        {
+            "anchor": [
+                [
+                    {
+                        "literal": "/._dist/our-wrapper"
+                    }
+                ],
+                [
+                    {
+                        "alias": "gi0-PINF-it",
+                        "resolved": "gi0-PINF-it"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0-PINF-it",
+                    "resolved": "gi0-PINF-it"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] write():",
+                "NS": "gi0-PINF-it",
+                "pointer": "write() /._dist/wrapper.js",
+                "path": "/._dist/our-wrapper/._dist/wrapper.js",
+                "value": "WRAPPER (built)",
+                "owner": {
+                    "event": "[gi0-PINF-it] register():",
+                    "NS": "gi0-PINF-it",
+                    "value": {
+                        "canonical": "builder.com/builder/v0",
+                        "aliases": [
+                            "builder.com/foo/bar"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "anchor": [
+                [
+                    {
+                        "literal": "/._dist/our-wrapper"
+                    }
+                ],
+                [
+                    {
+                        "alias": "gi0-PINF-it",
+                        "resolved": "gi0-PINF-it"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0-PINF-it",
+                    "resolved": "gi0-PINF-it"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] register():",
+                "NS": "gi0-PINF-it",
+                "value": {
+                    "canonical": "wrapper.com/wrapper/v0",
+                    "aliases": [
+                        "wrapper.com/foo/bar"
+                    ]
+                }
+            }
+        }
+    ],
+    "gi0-PINF-it": [
+        {
+            "anchor": [
+                [
+                    {
+                        "alias": "gi0-PINF-it",
+                        "resolved": "gi0-PINF-it"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0-PINF-it",
+                    "resolved": "gi0-PINF-it"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] write():",
+                "NS": "gi0-PINF-it",
+                "pointer": "write() /._dist/browser.js",
+                "path": "/._dist/browser.js",
+                "value": "HELLO WORLD (BUILDER) (built)",
+                "owner": {
+                    "event": "[gi0-PINF-it] register():",
+                    "NS": "gi0-PINF-it",
+                    "value": {
+                        "canonical": "wrapper.com/wrapper/v0",
+                        "aliases": [
+                            "wrapper.com/foo/bar"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "anchor": [
+                [
+                    {
+                        "alias": "gi0-PINF-it",
+                        "resolved": "gi0-PINF-it"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0-PINF-it",
+                    "resolved": "gi0-PINF-it"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] write():",
+                "NS": "gi0-PINF-it",
+                "pointer": "write() /._dist/wrapper.js",
+                "path": "/._dist/wrapper.js",
+                "value": "[wrapped][Hello World (wrapper)]",
+                "owner": {
+                    "event": "[gi0-PINF-it] register():",
+                    "NS": "gi0-PINF-it",
+                    "value": {
+                        "canonical": "wrapper.com/wrapper/v0",
+                        "aliases": [
+                            "wrapper.com/foo/bar"
+                        ]
+                    }
+                }
+            }
+        }
+    ]
+}
+{
+    "/._dist/our-builder|gi0-PINF-it": [
+        {
+            "anchor": [
+                [
+                    {
+                        "literal": "/._dist/our-builder"
+                    }
+                ],
+                [
+                    {
+                        "alias": "gi0-PINF-it",
+                        "resolved": "gi0-PINF-it"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0-PINF-it",
+                    "resolved": "gi0-PINF-it"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] register():",
+                "NS": "gi0-PINF-it",
+                "value": {
+                    "canonical": "builder.com/builder/v0",
+                    "aliases": [
+                        "builder.com/foo/bar"
+                    ]
+                }
+            }
+        }
+    ],
+    "/._dist/our-wrapper|gi0-PINF-it": [
+        {
+            "anchor": [
+                [
+                    {
+                        "literal": "/._dist/our-wrapper"
+                    }
+                ],
+                [
+                    {
+                        "alias": "gi0-PINF-it",
+                        "resolved": "gi0-PINF-it"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0-PINF-it",
+                    "resolved": "gi0-PINF-it"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] write():",
+                "NS": "gi0-PINF-it",
+                "pointer": "write() /._dist/wrapper.js",
+                "path": "/._dist/our-wrapper/._dist/wrapper.js",
+                "value": "WRAPPER (built)",
+                "owner": {
+                    "event": "[gi0-PINF-it] register():",
+                    "NS": "gi0-PINF-it",
+                    "value": {
+                        "canonical": "builder.com/builder/v0",
+                        "aliases": [
+                            "builder.com/foo/bar"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "anchor": [
+                [
+                    {
+                        "literal": "/._dist/our-wrapper"
+                    }
+                ],
+                [
+                    {
+                        "alias": "gi0-PINF-it",
+                        "resolved": "gi0-PINF-it"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0-PINF-it",
+                    "resolved": "gi0-PINF-it"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] register():",
+                "NS": "gi0-PINF-it",
+                "value": {
+                    "canonical": "wrapper.com/wrapper/v0",
+                    "aliases": [
+                        "wrapper.com/foo/bar"
+                    ]
+                }
+            }
+        }
+    ],
+    "gi0-PINF-it": [
+        {
+            "anchor": [
+                [
+                    {
+                        "alias": "gi0-PINF-it",
+                        "resolved": "gi0-PINF-it"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0-PINF-it",
+                    "resolved": "gi0-PINF-it"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] write():",
+                "NS": "gi0-PINF-it",
+                "pointer": "write() /._dist/browser.js",
+                "path": "/._dist/browser.js",
+                "value": "HELLO WORLD (BUILDER) (built)",
+                "owner": {
+                    "event": "[gi0-PINF-it] register():",
+                    "NS": "gi0-PINF-it",
+                    "value": {
+                        "canonical": "wrapper.com/wrapper/v0",
+                        "aliases": [
+                            "wrapper.com/foo/bar"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "anchor": [
+                [
+                    {
+                        "alias": "gi0-PINF-it",
+                        "resolved": "gi0-PINF-it"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0-PINF-it",
+                    "resolved": "gi0-PINF-it"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] write():",
+                "NS": "gi0-PINF-it",
+                "pointer": "write() /._dist/wrapper.js",
+                "path": "/._dist/wrapper.js",
+                "value": "[wrapped][Hello World (wrapper)]",
+                "owner": {
+                    "event": "[gi0-PINF-it] register():",
+                    "NS": "gi0-PINF-it",
+                    "value": {
+                        "canonical": "wrapper.com/wrapper/v0",
+                        "aliases": [
+                            "wrapper.com/foo/bar"
+                        ]
+                    }
+                }
+            }
+        }
+    ],
+    "main": [
+        {
+            "anchor": [],
+            "implements": [],
+            "api": {
+                "ran": true
+            }
+        }
+    ]
+}
+-- 2 --
+[builder.com] inf(): builder.com/builder/v0
+[gi0-PINF-it] register(): gi0-PINF-it {
+    "canonical": "builder.com/builder/v0",
+    "aliases": [
+        "builder.com/foo/bar"
+    ]
+}
+[builder.com] inf(): builder3
+[gi0-PINF-it] write(): gi0-PINF-it write() /._dist/wrapper.js /._dist/our-wrapper/._dist/wrapper.js WRAPPER (built)
+[wrapper.com] inf(): wrapper.com/wrapper/v0
+[gi0-PINF-it] register(): gi0-PINF-it {
+    "canonical": "wrapper.com/wrapper/v0",
+    "aliases": [
+        "wrapper.com/foo/bar"
+    ]
+}
+[builder.com] inf(): my-builder
+[wrapper.com] inf(): my-wrapper
+[gi0-PINF-it] write(): gi0-PINF-it write() /._dist/browser.js /._dist/browser.js HELLO WORLD (BUILDER) (built)
+[gi0-PINF-it] write(): gi0-PINF-it write() /._dist/wrapper.js /._dist/wrapper.js [wrapped][Hello World (wrapper)]
+api (main.inf.js) {
+    "/._dist/our-builder|gi0-PINF-it": [
+        {
+            "anchor": [
+                [
+                    {
+                        "literal": "/._dist/our-builder"
+                    }
+                ],
+                [
+                    {
+                        "alias": "gi0-PINF-it",
+                        "resolved": "gi0-PINF-it"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0-PINF-it",
+                    "resolved": "gi0-PINF-it"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] register():",
+                "NS": "gi0-PINF-it",
+                "value": {
+                    "canonical": "builder.com/builder/v0",
+                    "aliases": [
+                        "builder.com/foo/bar"
+                    ]
+                }
+            }
+        }
+    ],
+    "/._dist/our-wrapper|gi0-PINF-it": [
+        {
+            "anchor": [
+                [
+                    {
+                        "literal": "/._dist/our-wrapper"
+                    }
+                ],
+                [
+                    {
+                        "alias": "gi0-PINF-it",
+                        "resolved": "gi0-PINF-it"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0-PINF-it",
+                    "resolved": "gi0-PINF-it"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] write():",
+                "NS": "gi0-PINF-it",
+                "pointer": "write() /._dist/wrapper.js",
+                "path": "/._dist/our-wrapper/._dist/wrapper.js",
+                "value": "WRAPPER (built)",
+                "owner": {
+                    "event": "[gi0-PINF-it] register():",
+                    "NS": "gi0-PINF-it",
+                    "value": {
+                        "canonical": "builder.com/builder/v0",
+                        "aliases": [
+                            "builder.com/foo/bar"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "anchor": [
+                [
+                    {
+                        "literal": "/._dist/our-wrapper"
+                    }
+                ],
+                [
+                    {
+                        "alias": "gi0-PINF-it",
+                        "resolved": "gi0-PINF-it"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0-PINF-it",
+                    "resolved": "gi0-PINF-it"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] register():",
+                "NS": "gi0-PINF-it",
+                "value": {
+                    "canonical": "wrapper.com/wrapper/v0",
+                    "aliases": [
+                        "wrapper.com/foo/bar"
+                    ]
+                }
+            }
+        }
+    ],
+    "gi0-PINF-it": [
+        {
+            "anchor": [
+                [
+                    {
+                        "alias": "gi0-PINF-it",
+                        "resolved": "gi0-PINF-it"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0-PINF-it",
+                    "resolved": "gi0-PINF-it"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] write():",
+                "NS": "gi0-PINF-it",
+                "pointer": "write() /._dist/browser.js",
+                "path": "/._dist/browser.js",
+                "value": "HELLO WORLD (BUILDER) (built)",
+                "owner": {
+                    "event": "[gi0-PINF-it] register():",
+                    "NS": "gi0-PINF-it",
+                    "value": {
+                        "canonical": "wrapper.com/wrapper/v0",
+                        "aliases": [
+                            "wrapper.com/foo/bar"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "anchor": [
+                [
+                    {
+                        "alias": "gi0-PINF-it",
+                        "resolved": "gi0-PINF-it"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0-PINF-it",
+                    "resolved": "gi0-PINF-it"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] write():",
+                "NS": "gi0-PINF-it",
+                "pointer": "write() /._dist/wrapper.js",
+                "path": "/._dist/wrapper.js",
+                "value": "[wrapped][Hello World (wrapper)]",
+                "owner": {
+                    "event": "[gi0-PINF-it] register():",
+                    "NS": "gi0-PINF-it",
+                    "value": {
+                        "canonical": "wrapper.com/wrapper/v0",
+                        "aliases": [
+                            "wrapper.com/foo/bar"
+                        ]
+                    }
+                }
+            }
+        }
+    ]
+}
+{
+    "/._dist/our-builder|gi0-PINF-it": [
+        {
+            "anchor": [
+                [
+                    {
+                        "literal": "/._dist/our-builder"
+                    }
+                ],
+                [
+                    {
+                        "alias": "gi0-PINF-it",
+                        "resolved": "gi0-PINF-it"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0-PINF-it",
+                    "resolved": "gi0-PINF-it"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] register():",
+                "NS": "gi0-PINF-it",
+                "value": {
+                    "canonical": "builder.com/builder/v0",
+                    "aliases": [
+                        "builder.com/foo/bar"
+                    ]
+                }
+            }
+        }
+    ],
+    "/._dist/our-wrapper|gi0-PINF-it": [
+        {
+            "anchor": [
+                [
+                    {
+                        "literal": "/._dist/our-wrapper"
+                    }
+                ],
+                [
+                    {
+                        "alias": "gi0-PINF-it",
+                        "resolved": "gi0-PINF-it"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0-PINF-it",
+                    "resolved": "gi0-PINF-it"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] write():",
+                "NS": "gi0-PINF-it",
+                "pointer": "write() /._dist/wrapper.js",
+                "path": "/._dist/our-wrapper/._dist/wrapper.js",
+                "value": "WRAPPER (built)",
+                "owner": {
+                    "event": "[gi0-PINF-it] register():",
+                    "NS": "gi0-PINF-it",
+                    "value": {
+                        "canonical": "builder.com/builder/v0",
+                        "aliases": [
+                            "builder.com/foo/bar"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "anchor": [
+                [
+                    {
+                        "literal": "/._dist/our-wrapper"
+                    }
+                ],
+                [
+                    {
+                        "alias": "gi0-PINF-it",
+                        "resolved": "gi0-PINF-it"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0-PINF-it",
+                    "resolved": "gi0-PINF-it"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] register():",
+                "NS": "gi0-PINF-it",
+                "value": {
+                    "canonical": "wrapper.com/wrapper/v0",
+                    "aliases": [
+                        "wrapper.com/foo/bar"
+                    ]
+                }
+            }
+        }
+    ],
+    "gi0-PINF-it": [
+        {
+            "anchor": [
+                [
+                    {
+                        "alias": "gi0-PINF-it",
+                        "resolved": "gi0-PINF-it"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0-PINF-it",
+                    "resolved": "gi0-PINF-it"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] write():",
+                "NS": "gi0-PINF-it",
+                "pointer": "write() /._dist/browser.js",
+                "path": "/._dist/browser.js",
+                "value": "HELLO WORLD (BUILDER) (built)",
+                "owner": {
+                    "event": "[gi0-PINF-it] register():",
+                    "NS": "gi0-PINF-it",
+                    "value": {
+                        "canonical": "wrapper.com/wrapper/v0",
+                        "aliases": [
+                            "wrapper.com/foo/bar"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "anchor": [
+                [
+                    {
+                        "alias": "gi0-PINF-it",
+                        "resolved": "gi0-PINF-it"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0-PINF-it",
+                    "resolved": "gi0-PINF-it"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] write():",
+                "NS": "gi0-PINF-it",
+                "pointer": "write() /._dist/wrapper.js",
+                "path": "/._dist/wrapper.js",
+                "value": "[wrapped][Hello World (wrapper)]",
+                "owner": {
+                    "event": "[gi0-PINF-it] register():",
+                    "NS": "gi0-PINF-it",
+                    "value": {
+                        "canonical": "wrapper.com/wrapper/v0",
+                        "aliases": [
+                            "wrapper.com/foo/bar"
+                        ]
+                    }
+                }
+            }
+        }
+    ],
+    "main": [
+        {
+            "anchor": [],
+            "implements": [],
+            "api": {
+                "ran": true
+            }
+        }
+    ]
+}
+-- 3 --
+[builder.com] inf(): builder.com/builder/v0
+[gi0-PINF-it] register(): gi0-PINF-it {
+    "canonical": "builder.com/builder/v0",
+    "aliases": [
+        "builder.com/foo/bar"
+    ]
+}
+[builder.com] inf(): builder3
+[gi0-PINF-it] write(): gi0-PINF-it write() /._dist/wrapper.js /._dist/our-wrapper/._dist/wrapper.js WRAPPER (built)
+[wrapper.com] inf(): wrapper.com/wrapper/v0
+[gi0-PINF-it] register(): gi0-PINF-it {
+    "canonical": "wrapper.com/wrapper/v0",
+    "aliases": [
+        "wrapper.com/foo/bar"
+    ]
+}
+[builder.com] inf(): my-builder
+[wrapper.com] inf(): my-wrapper
+[gi0-PINF-it] write(): gi0-PINF-it write() /._dist/browser.js /._dist/browser.js HELLO WORLD (BUILDER) (built)
+[gi0-PINF-it] write(): gi0-PINF-it write() /._dist/wrapper.js /._dist/wrapper.js [wrapped][Hello World (wrapper)]
+api (main.inf.js) {
+    "/._dist/our-builder|gi0-PINF-it": [
+        {
+            "anchor": [
+                [
+                    {
+                        "literal": "/._dist/our-builder"
+                    }
+                ],
+                [
+                    {
+                        "alias": "gi0-PINF-it",
+                        "resolved": "gi0-PINF-it"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0-PINF-it",
+                    "resolved": "gi0-PINF-it"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] register():",
+                "NS": "gi0-PINF-it",
+                "value": {
+                    "canonical": "builder.com/builder/v0",
+                    "aliases": [
+                        "builder.com/foo/bar"
+                    ]
+                }
+            }
+        }
+    ],
+    "/._dist/our-wrapper|gi0-PINF-it": [
+        {
+            "anchor": [
+                [
+                    {
+                        "literal": "/._dist/our-wrapper"
+                    }
+                ],
+                [
+                    {
+                        "alias": "gi0-PINF-it",
+                        "resolved": "gi0-PINF-it"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0-PINF-it",
+                    "resolved": "gi0-PINF-it"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] write():",
+                "NS": "gi0-PINF-it",
+                "pointer": "write() /._dist/wrapper.js",
+                "path": "/._dist/our-wrapper/._dist/wrapper.js",
+                "value": "WRAPPER (built)",
+                "owner": {
+                    "event": "[gi0-PINF-it] register():",
+                    "NS": "gi0-PINF-it",
+                    "value": {
+                        "canonical": "builder.com/builder/v0",
+                        "aliases": [
+                            "builder.com/foo/bar"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "anchor": [
+                [
+                    {
+                        "literal": "/._dist/our-wrapper"
+                    }
+                ],
+                [
+                    {
+                        "alias": "gi0-PINF-it",
+                        "resolved": "gi0-PINF-it"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0-PINF-it",
+                    "resolved": "gi0-PINF-it"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] register():",
+                "NS": "gi0-PINF-it",
+                "value": {
+                    "canonical": "wrapper.com/wrapper/v0",
+                    "aliases": [
+                        "wrapper.com/foo/bar"
+                    ]
+                }
+            }
+        }
+    ],
+    "gi0-PINF-it": [
+        {
+            "anchor": [
+                [
+                    {
+                        "alias": "gi0-PINF-it",
+                        "resolved": "gi0-PINF-it"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0-PINF-it",
+                    "resolved": "gi0-PINF-it"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] write():",
+                "NS": "gi0-PINF-it",
+                "pointer": "write() /._dist/browser.js",
+                "path": "/._dist/browser.js",
+                "value": "HELLO WORLD (BUILDER) (built)",
+                "owner": {
+                    "event": "[gi0-PINF-it] register():",
+                    "NS": "gi0-PINF-it",
+                    "value": {
+                        "canonical": "wrapper.com/wrapper/v0",
+                        "aliases": [
+                            "wrapper.com/foo/bar"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "anchor": [
+                [
+                    {
+                        "alias": "gi0-PINF-it",
+                        "resolved": "gi0-PINF-it"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0-PINF-it",
+                    "resolved": "gi0-PINF-it"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] write():",
+                "NS": "gi0-PINF-it",
+                "pointer": "write() /._dist/wrapper.js",
+                "path": "/._dist/wrapper.js",
+                "value": "[wrapped][Hello World (wrapper)]",
+                "owner": {
+                    "event": "[gi0-PINF-it] register():",
+                    "NS": "gi0-PINF-it",
+                    "value": {
+                        "canonical": "wrapper.com/wrapper/v0",
+                        "aliases": [
+                            "wrapper.com/foo/bar"
+                        ]
+                    }
+                }
+            }
+        }
+    ]
+}
+{
+    "/._dist/our-builder|gi0-PINF-it": [
+        {
+            "anchor": [
+                [
+                    {
+                        "literal": "/._dist/our-builder"
+                    }
+                ],
+                [
+                    {
+                        "alias": "gi0-PINF-it",
+                        "resolved": "gi0-PINF-it"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0-PINF-it",
+                    "resolved": "gi0-PINF-it"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] register():",
+                "NS": "gi0-PINF-it",
+                "value": {
+                    "canonical": "builder.com/builder/v0",
+                    "aliases": [
+                        "builder.com/foo/bar"
+                    ]
+                }
+            }
+        }
+    ],
+    "/._dist/our-wrapper|gi0-PINF-it": [
+        {
+            "anchor": [
+                [
+                    {
+                        "literal": "/._dist/our-wrapper"
+                    }
+                ],
+                [
+                    {
+                        "alias": "gi0-PINF-it",
+                        "resolved": "gi0-PINF-it"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0-PINF-it",
+                    "resolved": "gi0-PINF-it"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] write():",
+                "NS": "gi0-PINF-it",
+                "pointer": "write() /._dist/wrapper.js",
+                "path": "/._dist/our-wrapper/._dist/wrapper.js",
+                "value": "WRAPPER (built)",
+                "owner": {
+                    "event": "[gi0-PINF-it] register():",
+                    "NS": "gi0-PINF-it",
+                    "value": {
+                        "canonical": "builder.com/builder/v0",
+                        "aliases": [
+                            "builder.com/foo/bar"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "anchor": [
+                [
+                    {
+                        "literal": "/._dist/our-wrapper"
+                    }
+                ],
+                [
+                    {
+                        "alias": "gi0-PINF-it",
+                        "resolved": "gi0-PINF-it"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0-PINF-it",
+                    "resolved": "gi0-PINF-it"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] register():",
+                "NS": "gi0-PINF-it",
+                "value": {
+                    "canonical": "wrapper.com/wrapper/v0",
+                    "aliases": [
+                        "wrapper.com/foo/bar"
+                    ]
+                }
+            }
+        }
+    ],
+    "gi0-PINF-it": [
+        {
+            "anchor": [
+                [
+                    {
+                        "alias": "gi0-PINF-it",
+                        "resolved": "gi0-PINF-it"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0-PINF-it",
+                    "resolved": "gi0-PINF-it"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] write():",
+                "NS": "gi0-PINF-it",
+                "pointer": "write() /._dist/browser.js",
+                "path": "/._dist/browser.js",
+                "value": "HELLO WORLD (BUILDER) (built)",
+                "owner": {
+                    "event": "[gi0-PINF-it] register():",
+                    "NS": "gi0-PINF-it",
+                    "value": {
+                        "canonical": "wrapper.com/wrapper/v0",
+                        "aliases": [
+                            "wrapper.com/foo/bar"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "anchor": [
+                [
+                    {
+                        "alias": "gi0-PINF-it",
+                        "resolved": "gi0-PINF-it"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0-PINF-it",
+                    "resolved": "gi0-PINF-it"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] write():",
+                "NS": "gi0-PINF-it",
+                "pointer": "write() /._dist/wrapper.js",
+                "path": "/._dist/wrapper.js",
+                "value": "[wrapped][Hello World (wrapper)]",
+                "owner": {
+                    "event": "[gi0-PINF-it] register():",
+                    "NS": "gi0-PINF-it",
+                    "value": {
+                        "canonical": "wrapper.com/wrapper/v0",
+                        "aliases": [
+                            "wrapper.com/foo/bar"
+                        ]
+                    }
+                }
+            }
+        }
+    ],
+    "main": [
+        {
+            "anchor": [],
+            "implements": [],
+            "api": {
+                "ran": true
+            }
+        }
+    ]
+}
+-- 4 --
+[builder.com] inf(): builder.com/builder/v0
+[gi0-PINF-it] register(): gi0-PINF-it {
+    "canonical": "builder.com/builder/v0",
+    "aliases": [
+        "builder.com/foo/bar"
+    ]
+}
+[builder.com] inf(): builder3
+[gi0-PINF-it] write(): gi0-PINF-it write() /._dist/wrapper.js /._dist/wrapper/subpath/._dist/wrapper.js WRAPPER (built)
+[wrapper.com] inf(): wrapper.com/wrapper/v0
+[gi0-PINF-it] register(): gi0-PINF-it {
+    "canonical": "wrapper.com/wrapper/v0",
+    "aliases": [
+        "wrapper.com/foo/bar"
+    ]
+}
+[builder.com] inf(): builder1
+[builder.com] inf(): builder2
+[wrapper.com] inf(): wrapper3
+[gi0-PINF-it] write(): gi0-PINF-it write() /._dist/browser1.js /._dist/browser1.js HELLO WORLD 1 (built)
+[gi0-PINF-it] write(): gi0-PINF-it write() /._dist/browser2.js /._dist/browser2.js [wrapped][HELLO WORLD 2 (built)]
+[gi0-PINF-it] write(): gi0-PINF-it write() /._dist/browser3.js /._dist/browser3.js [WRAPPED][HELLO WORLD 3] (built)
+api (main.inf.js) {
+    "/._dist/builder|gi0-PINF-it": [
+        {
+            "anchor": [
+                [
+                    {
+                        "literal": "/._dist/builder"
+                    }
+                ],
+                [
+                    {
+                        "alias": "gi0-PINF-it",
+                        "resolved": "gi0-PINF-it"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0-PINF-it",
+                    "resolved": "gi0-PINF-it"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] register():",
+                "NS": "gi0-PINF-it",
+                "value": {
+                    "canonical": "builder.com/builder/v0",
+                    "aliases": [
+                        "builder.com/foo/bar"
+                    ]
+                }
+            }
+        }
+    ],
+    "/._dist/wrapper/subpath|gi0-PINF-it": [
+        {
+            "anchor": [
+                [
+                    {
+                        "literal": "/._dist/wrapper/subpath"
+                    }
+                ],
+                [
+                    {
+                        "alias": "gi0-PINF-it",
+                        "resolved": "gi0-PINF-it"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0-PINF-it",
+                    "resolved": "gi0-PINF-it"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] write():",
+                "NS": "gi0-PINF-it",
+                "pointer": "write() /._dist/wrapper.js",
+                "path": "/._dist/wrapper/subpath/._dist/wrapper.js",
+                "value": "WRAPPER (built)",
+                "owner": {
+                    "event": "[gi0-PINF-it] register():",
+                    "NS": "gi0-PINF-it",
+                    "value": {
+                        "canonical": "builder.com/builder/v0",
+                        "aliases": [
+                            "builder.com/foo/bar"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "anchor": [
+                [
+                    {
+                        "literal": "/._dist/wrapper/subpath"
+                    }
+                ],
+                [
+                    {
+                        "alias": "gi0-PINF-it",
+                        "resolved": "gi0-PINF-it"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0-PINF-it",
+                    "resolved": "gi0-PINF-it"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] register():",
+                "NS": "gi0-PINF-it",
+                "value": {
+                    "canonical": "wrapper.com/wrapper/v0",
+                    "aliases": [
+                        "wrapper.com/foo/bar"
+                    ]
+                }
+            }
+        }
+    ],
+    "gi0-PINF-it": [
+        {
+            "anchor": [
+                [
+                    {
+                        "alias": "gi0-PINF-it",
+                        "resolved": "gi0-PINF-it"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0-PINF-it",
+                    "resolved": "gi0-PINF-it"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] write():",
+                "NS": "gi0-PINF-it",
+                "pointer": "write() /._dist/browser1.js",
+                "path": "/._dist/browser1.js",
+                "value": "HELLO WORLD 1 (built)",
+                "owner": {
+                    "event": "[gi0-PINF-it] register():",
+                    "NS": "gi0-PINF-it",
+                    "value": {
+                        "canonical": "wrapper.com/wrapper/v0",
+                        "aliases": [
+                            "wrapper.com/foo/bar"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "anchor": [
+                [
+                    {
+                        "alias": "gi0-PINF-it",
+                        "resolved": "gi0-PINF-it"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0-PINF-it",
+                    "resolved": "gi0-PINF-it"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] write():",
+                "NS": "gi0-PINF-it",
+                "pointer": "write() /._dist/browser2.js",
+                "path": "/._dist/browser2.js",
+                "value": "[wrapped][HELLO WORLD 2 (built)]",
+                "owner": {
+                    "event": "[gi0-PINF-it] register():",
+                    "NS": "gi0-PINF-it",
+                    "value": {
+                        "canonical": "wrapper.com/wrapper/v0",
+                        "aliases": [
+                            "wrapper.com/foo/bar"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "anchor": [
+                [
+                    {
+                        "alias": "gi0-PINF-it",
+                        "resolved": "gi0-PINF-it"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0-PINF-it",
+                    "resolved": "gi0-PINF-it"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] write():",
+                "NS": "gi0-PINF-it",
+                "pointer": "write() /._dist/browser3.js",
+                "path": "/._dist/browser3.js",
+                "value": "[WRAPPED][HELLO WORLD 3] (built)",
+                "owner": {
+                    "event": "[gi0-PINF-it] register():",
+                    "NS": "gi0-PINF-it",
+                    "value": {
+                        "canonical": "wrapper.com/wrapper/v0",
+                        "aliases": [
+                            "wrapper.com/foo/bar"
+                        ]
+                    }
+                }
+            }
+        }
+    ]
+}
+[gi0-PINF-it] register(): gi0-PINF-it {
+    "canonical": "builder.com/builder/v0",
+    "aliases": [
+        "builder.com/foo/bar"
+    ]
+}
+[gi0-PINF-it] write(): gi0-PINF-it write() /._dist/wrapper.js /._dist/our-wrapper/._dist/wrapper.js WRAPPER (built)
+[gi0-PINF-it] register(): gi0-PINF-it {
+    "canonical": "wrapper.com/wrapper/v0",
+    "aliases": [
+        "wrapper.com/foo/bar"
+    ]
+}
+[builder.com] inf(): my-builder
+[wrapper.com] inf(): my-wrapper
+[gi0-PINF-it] write(): gi0-PINF-it write() /._dist/browser.js /._dist/browser.js HELLO WORLD (BUILDER) (built)
+[gi0-PINF-it] write(): gi0-PINF-it write() /._dist/wrapper.js /._dist/wrapper.js [wrapped][Hello World (wrapper)]
+api (main.inf.js) {
+    "/._dist/builder|gi0-PINF-it": [
+        {
+            "anchor": [
+                [
+                    {
+                        "literal": "/._dist/builder"
+                    }
+                ],
+                [
+                    {
+                        "alias": "gi0-PINF-it",
+                        "resolved": "gi0-PINF-it"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0-PINF-it",
+                    "resolved": "gi0-PINF-it"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] register():",
+                "NS": "gi0-PINF-it",
+                "value": {
+                    "canonical": "builder.com/builder/v0",
+                    "aliases": [
+                        "builder.com/foo/bar"
+                    ]
+                }
+            }
+        }
+    ],
+    "/._dist/wrapper/subpath|gi0-PINF-it": [
+        {
+            "anchor": [
+                [
+                    {
+                        "literal": "/._dist/wrapper/subpath"
+                    }
+                ],
+                [
+                    {
+                        "alias": "gi0-PINF-it",
+                        "resolved": "gi0-PINF-it"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0-PINF-it",
+                    "resolved": "gi0-PINF-it"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] write():",
+                "NS": "gi0-PINF-it",
+                "pointer": "write() /._dist/wrapper.js",
+                "path": "/._dist/wrapper/subpath/._dist/wrapper.js",
+                "value": "WRAPPER (built)",
+                "owner": {
+                    "event": "[gi0-PINF-it] register():",
+                    "NS": "gi0-PINF-it",
+                    "value": {
+                        "canonical": "builder.com/builder/v0",
+                        "aliases": [
+                            "builder.com/foo/bar"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "anchor": [
+                [
+                    {
+                        "literal": "/._dist/wrapper/subpath"
+                    }
+                ],
+                [
+                    {
+                        "alias": "gi0-PINF-it",
+                        "resolved": "gi0-PINF-it"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0-PINF-it",
+                    "resolved": "gi0-PINF-it"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] register():",
+                "NS": "gi0-PINF-it",
+                "value": {
+                    "canonical": "wrapper.com/wrapper/v0",
+                    "aliases": [
+                        "wrapper.com/foo/bar"
+                    ]
+                }
+            }
+        }
+    ],
+    "gi0-PINF-it": [
+        {
+            "anchor": [
+                [
+                    {
+                        "alias": "gi0-PINF-it",
+                        "resolved": "gi0-PINF-it"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0-PINF-it",
+                    "resolved": "gi0-PINF-it"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] write():",
+                "NS": "gi0-PINF-it",
+                "pointer": "write() /._dist/browser1.js",
+                "path": "/._dist/browser1.js",
+                "value": "HELLO WORLD 1 (built)",
+                "owner": {
+                    "event": "[gi0-PINF-it] register():",
+                    "NS": "gi0-PINF-it",
+                    "value": {
+                        "canonical": "wrapper.com/wrapper/v0",
+                        "aliases": [
+                            "wrapper.com/foo/bar"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "anchor": [
+                [
+                    {
+                        "alias": "gi0-PINF-it",
+                        "resolved": "gi0-PINF-it"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0-PINF-it",
+                    "resolved": "gi0-PINF-it"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] write():",
+                "NS": "gi0-PINF-it",
+                "pointer": "write() /._dist/browser2.js",
+                "path": "/._dist/browser2.js",
+                "value": "[wrapped][HELLO WORLD 2 (built)]",
+                "owner": {
+                    "event": "[gi0-PINF-it] register():",
+                    "NS": "gi0-PINF-it",
+                    "value": {
+                        "canonical": "wrapper.com/wrapper/v0",
+                        "aliases": [
+                            "wrapper.com/foo/bar"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "anchor": [
+                [
+                    {
+                        "alias": "gi0-PINF-it",
+                        "resolved": "gi0-PINF-it"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0-PINF-it",
+                    "resolved": "gi0-PINF-it"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] write():",
+                "NS": "gi0-PINF-it",
+                "pointer": "write() /._dist/browser3.js",
+                "path": "/._dist/browser3.js",
+                "value": "[WRAPPED][HELLO WORLD 3] (built)",
+                "owner": {
+                    "event": "[gi0-PINF-it] register():",
+                    "NS": "gi0-PINF-it",
+                    "value": {
+                        "canonical": "wrapper.com/wrapper/v0",
+                        "aliases": [
+                            "wrapper.com/foo/bar"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "anchor": [
+                [
+                    {
+                        "alias": "gi0-PINF-it",
+                        "resolved": "gi0-PINF-it"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0-PINF-it",
+                    "resolved": "gi0-PINF-it"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] write():",
+                "NS": "gi0-PINF-it",
+                "pointer": "write() /._dist/browser.js",
+                "path": "/._dist/browser.js",
+                "value": "HELLO WORLD (BUILDER) (built)",
+                "owner": {
+                    "event": "[gi0-PINF-it] register():",
+                    "NS": "gi0-PINF-it",
+                    "value": {
+                        "canonical": "wrapper.com/wrapper/v0",
+                        "aliases": [
+                            "wrapper.com/foo/bar"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "anchor": [
+                [
+                    {
+                        "alias": "gi0-PINF-it",
+                        "resolved": "gi0-PINF-it"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0-PINF-it",
+                    "resolved": "gi0-PINF-it"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] write():",
+                "NS": "gi0-PINF-it",
+                "pointer": "write() /._dist/wrapper.js",
+                "path": "/._dist/wrapper.js",
+                "value": "[wrapped][Hello World (wrapper)]",
+                "owner": {
+                    "event": "[gi0-PINF-it] register():",
+                    "NS": "gi0-PINF-it",
+                    "value": {
+                        "canonical": "wrapper.com/wrapper/v0",
+                        "aliases": [
+                            "wrapper.com/foo/bar"
+                        ]
+                    }
+                }
+            }
+        }
+    ],
+    "main": [
+        {
+            "anchor": [],
+            "implements": [],
+            "api": {
+                "ran": true
+            }
+        }
+    ],
+    "/._dist/our-builder|gi0-PINF-it": [
+        {
+            "anchor": [
+                [
+                    {
+                        "literal": "/._dist/our-builder"
+                    }
+                ],
+                [
+                    {
+                        "alias": "gi0-PINF-it",
+                        "resolved": "gi0-PINF-it"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0-PINF-it",
+                    "resolved": "gi0-PINF-it"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] register():",
+                "NS": "gi0-PINF-it",
+                "value": {
+                    "canonical": "builder.com/builder/v0",
+                    "aliases": [
+                        "builder.com/foo/bar"
+                    ]
+                }
+            }
+        }
+    ],
+    "/._dist/our-wrapper|gi0-PINF-it": [
+        {
+            "anchor": [
+                [
+                    {
+                        "literal": "/._dist/our-wrapper"
+                    }
+                ],
+                [
+                    {
+                        "alias": "gi0-PINF-it",
+                        "resolved": "gi0-PINF-it"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0-PINF-it",
+                    "resolved": "gi0-PINF-it"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] write():",
+                "NS": "gi0-PINF-it",
+                "pointer": "write() /._dist/wrapper.js",
+                "path": "/._dist/our-wrapper/._dist/wrapper.js",
+                "value": "WRAPPER (built)",
+                "owner": {
+                    "event": "[gi0-PINF-it] register():",
+                    "NS": "gi0-PINF-it",
+                    "value": {
+                        "canonical": "builder.com/builder/v0",
+                        "aliases": [
+                            "builder.com/foo/bar"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "anchor": [
+                [
+                    {
+                        "literal": "/._dist/our-wrapper"
+                    }
+                ],
+                [
+                    {
+                        "alias": "gi0-PINF-it",
+                        "resolved": "gi0-PINF-it"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0-PINF-it",
+                    "resolved": "gi0-PINF-it"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] register():",
+                "NS": "gi0-PINF-it",
+                "value": {
+                    "canonical": "wrapper.com/wrapper/v0",
+                    "aliases": [
+                        "wrapper.com/foo/bar"
+                    ]
+                }
+            }
+        }
+    ]
+}
+{
+    "/._dist/builder|gi0-PINF-it": [
+        {
+            "anchor": [
+                [
+                    {
+                        "literal": "/._dist/builder"
+                    }
+                ],
+                [
+                    {
+                        "alias": "gi0-PINF-it",
+                        "resolved": "gi0-PINF-it"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0-PINF-it",
+                    "resolved": "gi0-PINF-it"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] register():",
+                "NS": "gi0-PINF-it",
+                "value": {
+                    "canonical": "builder.com/builder/v0",
+                    "aliases": [
+                        "builder.com/foo/bar"
+                    ]
+                }
+            }
+        }
+    ],
+    "/._dist/wrapper/subpath|gi0-PINF-it": [
+        {
+            "anchor": [
+                [
+                    {
+                        "literal": "/._dist/wrapper/subpath"
+                    }
+                ],
+                [
+                    {
+                        "alias": "gi0-PINF-it",
+                        "resolved": "gi0-PINF-it"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0-PINF-it",
+                    "resolved": "gi0-PINF-it"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] write():",
+                "NS": "gi0-PINF-it",
+                "pointer": "write() /._dist/wrapper.js",
+                "path": "/._dist/wrapper/subpath/._dist/wrapper.js",
+                "value": "WRAPPER (built)",
+                "owner": {
+                    "event": "[gi0-PINF-it] register():",
+                    "NS": "gi0-PINF-it",
+                    "value": {
+                        "canonical": "builder.com/builder/v0",
+                        "aliases": [
+                            "builder.com/foo/bar"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "anchor": [
+                [
+                    {
+                        "literal": "/._dist/wrapper/subpath"
+                    }
+                ],
+                [
+                    {
+                        "alias": "gi0-PINF-it",
+                        "resolved": "gi0-PINF-it"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0-PINF-it",
+                    "resolved": "gi0-PINF-it"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] register():",
+                "NS": "gi0-PINF-it",
+                "value": {
+                    "canonical": "wrapper.com/wrapper/v0",
+                    "aliases": [
+                        "wrapper.com/foo/bar"
+                    ]
+                }
+            }
+        }
+    ],
+    "gi0-PINF-it": [
+        {
+            "anchor": [
+                [
+                    {
+                        "alias": "gi0-PINF-it",
+                        "resolved": "gi0-PINF-it"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0-PINF-it",
+                    "resolved": "gi0-PINF-it"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] write():",
+                "NS": "gi0-PINF-it",
+                "pointer": "write() /._dist/browser1.js",
+                "path": "/._dist/browser1.js",
+                "value": "HELLO WORLD 1 (built)",
+                "owner": {
+                    "event": "[gi0-PINF-it] register():",
+                    "NS": "gi0-PINF-it",
+                    "value": {
+                        "canonical": "wrapper.com/wrapper/v0",
+                        "aliases": [
+                            "wrapper.com/foo/bar"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "anchor": [
+                [
+                    {
+                        "alias": "gi0-PINF-it",
+                        "resolved": "gi0-PINF-it"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0-PINF-it",
+                    "resolved": "gi0-PINF-it"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] write():",
+                "NS": "gi0-PINF-it",
+                "pointer": "write() /._dist/browser2.js",
+                "path": "/._dist/browser2.js",
+                "value": "[wrapped][HELLO WORLD 2 (built)]",
+                "owner": {
+                    "event": "[gi0-PINF-it] register():",
+                    "NS": "gi0-PINF-it",
+                    "value": {
+                        "canonical": "wrapper.com/wrapper/v0",
+                        "aliases": [
+                            "wrapper.com/foo/bar"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "anchor": [
+                [
+                    {
+                        "alias": "gi0-PINF-it",
+                        "resolved": "gi0-PINF-it"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0-PINF-it",
+                    "resolved": "gi0-PINF-it"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] write():",
+                "NS": "gi0-PINF-it",
+                "pointer": "write() /._dist/browser3.js",
+                "path": "/._dist/browser3.js",
+                "value": "[WRAPPED][HELLO WORLD 3] (built)",
+                "owner": {
+                    "event": "[gi0-PINF-it] register():",
+                    "NS": "gi0-PINF-it",
+                    "value": {
+                        "canonical": "wrapper.com/wrapper/v0",
+                        "aliases": [
+                            "wrapper.com/foo/bar"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "anchor": [
+                [
+                    {
+                        "alias": "gi0-PINF-it",
+                        "resolved": "gi0-PINF-it"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0-PINF-it",
+                    "resolved": "gi0-PINF-it"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] write():",
+                "NS": "gi0-PINF-it",
+                "pointer": "write() /._dist/browser.js",
+                "path": "/._dist/browser.js",
+                "value": "HELLO WORLD (BUILDER) (built)",
+                "owner": {
+                    "event": "[gi0-PINF-it] register():",
+                    "NS": "gi0-PINF-it",
+                    "value": {
+                        "canonical": "wrapper.com/wrapper/v0",
+                        "aliases": [
+                            "wrapper.com/foo/bar"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "anchor": [
+                [
+                    {
+                        "alias": "gi0-PINF-it",
+                        "resolved": "gi0-PINF-it"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0-PINF-it",
+                    "resolved": "gi0-PINF-it"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] write():",
+                "NS": "gi0-PINF-it",
+                "pointer": "write() /._dist/wrapper.js",
+                "path": "/._dist/wrapper.js",
+                "value": "[wrapped][Hello World (wrapper)]",
+                "owner": {
+                    "event": "[gi0-PINF-it] register():",
+                    "NS": "gi0-PINF-it",
+                    "value": {
+                        "canonical": "wrapper.com/wrapper/v0",
+                        "aliases": [
+                            "wrapper.com/foo/bar"
+                        ]
+                    }
+                }
+            }
+        }
+    ],
+    "main": [
+        {
+            "anchor": [],
+            "implements": [],
+            "api": {
+                "ran": true
+            }
+        },
+        {
+            "anchor": [],
+            "implements": [],
+            "api": {
+                "ran": true
+            }
+        }
+    ],
+    "/._dist/our-builder|gi0-PINF-it": [
+        {
+            "anchor": [
+                [
+                    {
+                        "literal": "/._dist/our-builder"
+                    }
+                ],
+                [
+                    {
+                        "alias": "gi0-PINF-it",
+                        "resolved": "gi0-PINF-it"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0-PINF-it",
+                    "resolved": "gi0-PINF-it"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] register():",
+                "NS": "gi0-PINF-it",
+                "value": {
+                    "canonical": "builder.com/builder/v0",
+                    "aliases": [
+                        "builder.com/foo/bar"
+                    ]
+                }
+            }
+        }
+    ],
+    "/._dist/our-wrapper|gi0-PINF-it": [
+        {
+            "anchor": [
+                [
+                    {
+                        "literal": "/._dist/our-wrapper"
+                    }
+                ],
+                [
+                    {
+                        "alias": "gi0-PINF-it",
+                        "resolved": "gi0-PINF-it"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0-PINF-it",
+                    "resolved": "gi0-PINF-it"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] write():",
+                "NS": "gi0-PINF-it",
+                "pointer": "write() /._dist/wrapper.js",
+                "path": "/._dist/our-wrapper/._dist/wrapper.js",
+                "value": "WRAPPER (built)",
+                "owner": {
+                    "event": "[gi0-PINF-it] register():",
+                    "NS": "gi0-PINF-it",
+                    "value": {
+                        "canonical": "builder.com/builder/v0",
+                        "aliases": [
+                            "builder.com/foo/bar"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "anchor": [
+                [
+                    {
+                        "literal": "/._dist/our-wrapper"
+                    }
+                ],
+                [
+                    {
+                        "alias": "gi0-PINF-it",
+                        "resolved": "gi0-PINF-it"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0-PINF-it",
+                    "resolved": "gi0-PINF-it"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] register():",
+                "NS": "gi0-PINF-it",
+                "value": {
+                    "canonical": "wrapper.com/wrapper/v0",
+                    "aliases": [
+                        "wrapper.com/foo/bar"
+                    ]
+                }
+            }
+        }
+    ]
+}
+-- 5 --
