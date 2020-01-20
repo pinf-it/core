@@ -1,0 +1,18 @@
+#!/usr/bin/env inf
+{
+    "#": "../../../01-ShebangDirInf/#!/gi0-PINF-it/#!",
+
+    "#": {
+        "/._dist/our-builder": "../../../01-ShebangDirInf/#!/builder.com/#!",
+        "/._dist/our-wrapper": "../../../01-ShebangDirInf/#!/wrapper.com/#!.v1."
+    },
+
+    ":my-builder:": "/._dist/our-builder @ builder/v0",
+    ":my-wrapper:": "/._dist/our-wrapper @ wrapper/v0",
+
+    "gi0-PINF-it @ # :my-builder: write() /._dist/browser.js": "Hello World (builder)",
+    "gi0-PINF-it @ # :my-wrapper: write() /._dist/wrapper.js": "Hello World (wrapper)",
+
+    "main #": "../../../01-ShebangDirInf/#!/main.",
+    "main # run()": ""
+}

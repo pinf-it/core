@@ -1,0 +1,16 @@
+{
+    "identity # ": (javascript (exports, process) >>>
+        exports.inf = async function (inf) {
+            return {
+                getFull: function () {
+                    return {
+                        "id": "gi0.PINF.it/core/0",
+                        "cwd": "%%args.cwd%%",
+                        "argv": process.argv
+                    };
+                }
+            };
+        }
+    <<<),
+    "identity # getFull()": ""
+}

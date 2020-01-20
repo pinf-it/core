@@ -1,0 +1,15 @@
+#!/usr/bin/env inf
+{
+    "#": "./gi0-PINF-it/#!",
+
+    "#": {
+        "/._dist/builder": "./builder.com/#!"
+    },
+
+    ":builder1:": "/._dist/builder @ builder/v0",
+
+    "gi0-PINF-it @ # :builder1: write() /._dist/browser1.js": "Hello World 1",
+
+    "main #": "./main.",
+    "main # run()": ""
+}

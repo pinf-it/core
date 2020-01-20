@@ -1,0 +1,121 @@
+-- 1 --
+[34m[1m[pinf.it][22m[39m [34m[1mWriting to: TeStLoCaLiZeD/._dist/README.md[22m[39m
+[gi0-PINF-it] write(): gi0.PINF.it/core/v0 write() /._dist/README.md /._dist/README.md README: My project readme!
+{
+    "gi0.PINF.it/core/v0": [
+        {
+            "anchor": [
+                [
+                    {
+                        "alias": "gi0.PINF.it/core/v0",
+                        "resolved": "gi0.PINF.it/core/v0"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0.PINF.it/core/v0",
+                    "resolved": "gi0.PINF.it/core/v0"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] write():",
+                "NS": "gi0.PINF.it/core/v0",
+                "pointer": "write() /._dist/README.md",
+                "path": "/._dist/README.md",
+                "value": "README: My project readme!"
+            }
+        }
+    ]
+}
+-- 2 --
+[34m[1m[pinf.it][22m[39m [34m[1mWriting to: TeStLoCaLiZeD/._dist/README.md[22m[39m
+[gi0-PINF-it] write(): gi0.PINF.it/core/v0 write() /._dist/README.md /._dist/README.md README: My project readme!
+{
+    "gi0.PINF.it/core/v0": [
+        {
+            "anchor": [
+                [
+                    {
+                        "alias": "gi0.PINF.it/core/v0",
+                        "resolved": "gi0.PINF.it/core/v0"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0.PINF.it/core/v0",
+                    "resolved": "gi0.PINF.it/core/v0"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] write():",
+                "NS": "gi0.PINF.it/core/v0",
+                "pointer": "write() /._dist/README.md",
+                "path": "/._dist/README.md",
+                "value": "README: My project readme!"
+            }
+        }
+    ]
+}
+-- 3 --
+[34m[1m[pinf.it][22m[39m [34m[1mWriting to: TeStLoCaLiZeD/._dist/README.md[22m[39m
+[gi0-PINF-it] write(): gi0.PINF.it/core/v0 write() /._dist/README.md /._dist/README.md README: My project readme!
+{
+    "gi0.PINF.it/core/v0": [
+        {
+            "anchor": [
+                [
+                    {
+                        "alias": "gi0.PINF.it/core/v0",
+                        "resolved": "gi0.PINF.it/core/v0"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0.PINF.it/core/v0",
+                    "resolved": "gi0.PINF.it/core/v0"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] write():",
+                "NS": "gi0.PINF.it/core/v0",
+                "pointer": "write() /._dist/README.md",
+                "path": "/._dist/README.md",
+                "value": "README: My project readme!"
+            }
+        }
+    ]
+}
+-- 4 --
+[34m[1m[pinf.it][22m[39m [34m[1mWriting to: TeStLoCaLiZeD/._dist/README.md[22m[39m
+[gi0-PINF-it] write(): gi0.PINF.it/core/v0 write() /._dist/README.md /._dist/README.md README: My project readme!
+{
+    "gi0.PINF.it/core/v0": [
+        {
+            "anchor": [
+                [
+                    {
+                        "alias": "gi0.PINF.it/core/v0",
+                        "resolved": "gi0.PINF.it/core/v0"
+                    }
+                ]
+            ],
+            "implements": [
+                {
+                    "alias": "gi0.PINF.it/core/v0",
+                    "resolved": "gi0.PINF.it/core/v0"
+                }
+            ],
+            "api": {
+                "event": "[gi0-PINF-it] write():",
+                "NS": "gi0.PINF.it/core/v0",
+                "pointer": "write() /._dist/README.md",
+                "path": "/._dist/README.md",
+                "value": "README: My project readme!"
+            }
+        }
+    ]
+}
+-- 5 --

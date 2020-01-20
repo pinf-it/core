@@ -1,0 +1,4 @@
+{
+    "template/v0 #": "${__DIRNAME__}/template.",
+    "app/v0 #": "${__DIRNAME__}/app."
+}

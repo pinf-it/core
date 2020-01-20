@@ -1,0 +1,6 @@
+{
+    "generator/v0 #": "${__DIRNAME__}/generator.",
+    "generator/v0 # setIdAliases()": [
+        "readme.com/foo/bar"
+    ]
+}

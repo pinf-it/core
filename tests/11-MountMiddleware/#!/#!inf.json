@@ -1,0 +1,35 @@
+#!/usr/bin/env inf
+{
+    "#": "gi0.PINF.it/core/v0",
+
+    "#": {
+        "server": "server.com",
+        "app": "app.com"
+    },
+
+    ":server:": "server @ server/v0",
+    ":middleware:": "app @ middleware/v0",
+
+    "gi0.PINF.it/core/v0 @ # :server: set() port": 8080,
+    "gi0.PINF.it/core/v0 @ # :server: set() docRoot": "/.~/www",
+
+    "gi0.PINF.it/core/v0 @ # :middleware: ensure() /.~/www/index.html": {
+        "message": "Hello World (index.html)\n"
+    },
+
+    "gi0.PINF.it/core/v0 @ # :middleware: mount() /.~/www/info.htm": {
+        "message": "Hello World (info.htm)\n"
+    },
+
+    "gi0.PINF.it/core/v0 @ # :server: run()": "start",
+
+    "# run": (run.bash.progress () >>>
+
+        curl -s http://127.0.0.1:8080/
+
+        curl -s http://127.0.0.1:8080/info.htm
+
+    <<<),    
+
+    "gi0.PINF.it/core/v0 @ # :server: run()": "stop"
+}

@@ -1,0 +1,12 @@
+#!/usr/bin/env inf
+{
+    "#": "gi0.PINF.it/core/v0",
+
+    "#": {
+        "hello": "hello.com"
+    },
+
+    ":greeter:": "hello @ greeter/v0",
+
+    "gi0.PINF.it/core/v0 @ # :greeter: write() /.~/result.txt": "Hello World\n"
+}

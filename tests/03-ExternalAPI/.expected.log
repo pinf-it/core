@@ -1,0 +1,37 @@
+>>>TEST_IGNORE_LINE:\d+\spassing\s\([^\)]+\)<<<
+
+
+  core
+    Api: CLI
+    Api: NodeJS
+[builder.com] inf(): builder/v0
+[gi0-PINF-it] register(): gi0-PINF-it {
+    "canonical": "builder.com/builder/v0",
+    "aliases": [
+        "builder.com/foo/bar"
+    ]
+}
+[builder.com] interface(): my-builder
+[gi0-PINF-it] write(): gi0-PINF-it write() /._dist/browser.js /._dist/browser.js HELLO WORLD (BUILDER) (built)
+    Api: Features
+[builder.com] inf(): builder/v0
+[gi0-PINF-it] register(): gi0-PINF-it {
+    "canonical": "builder.com/builder/v0",
+    "aliases": [
+        "builder.com/foo/bar"
+    ]
+}
+[builder.com] interface(): my-builder
+[gi0-PINF-it] write(): gi0-PINF-it write() /._dist/browser.js /._dist/browser.js HELLO WORLD (BUILDER) (built)
+[builder.com] inf(): builder/v0
+[gi0-PINF-it] register(): gi0-PINF-it {
+    "canonical": "builder.com/builder/v0",
+    "aliases": [
+        "builder.com/foo/bar"
+    ]
+}
+[builder.com] interface(): my-builder
+[gi0-PINF-it] write(): gi0-PINF-it write() /._dist/browser.js /._dist/browser.js HELLO WORLD (BUILDER) (built)
+
+
+

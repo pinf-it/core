@@ -1,0 +1,19 @@
+{
+    "generator/v0 #": "${__DIRNAME__}/generator.",
+    "generator/v0 # setIdAliases()": [
+        "readme.com/foo/bar"
+    ],
+
+    "gi0-PINF-it @ # register()": "generator/v0 # id()",
+
+
+    ":readme:": "generator/v0",
+    "gi0-PINF-it @ # :readme: write() /._dist/README.md": "readme.com readme!",
+
+
+    "#": {
+        "/._dist/builder": "../builder.com"
+    },
+    ":builder:": "/._dist/builder @ builder/v0",
+    "gi0-PINF-it @ # :builder: write() /._dist/reader.js": "Hello World from readme.com!"
+}

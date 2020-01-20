@@ -1,0 +1,49 @@
+[34m[1m[pinf.it][builder.com/template/v0:templateCompiler][22m[39m [34m[1mUpdated template[22m[39m
+[34m[1m[pinf.it][22m[39m [34m[1mWriting to: TeStLoCaLiZeD/.~/template.js[22m[39m
+[34m[1m[pinf.it][22m[39m [34m[1mWriting to: TeStLoCaLiZeD/.~/app.js[22m[39m
+[34m[1m[pinf.it][builder.com/template/v0:templateCompiler][22m[39m [34m[1mUpdated template[22m[39m
+[34m[1m[pinf.it][22m[39m [34m[1mWriting to: TeStLoCaLiZeD/.~/template.js[22m[39m
+[34m[1m[pinf.it][22m[39m [34m[1mWriting to: TeStLoCaLiZeD/.~/app.js[22m[39m
+[34m[1m[pinf.it][builder.com/template/v0:templateCompiler][22m[39m [34m[1mUpdated template[22m[39m
+[34m[1m[pinf.it][22m[39m [34m[1mWriting to: TeStLoCaLiZeD/.~/template.js[22m[39m
+[34m[1m[pinf.it][22m[39m [34m[1mWriting to: TeStLoCaLiZeD/.~/app.js[22m[39m
+---
+console.log('%message%', '3');
+---
+console.log('Hello World!', '3');
+--- silent ---
+--- verbose ---
+[34m[1m[pinf.it][builder.com/template/v0:templateCompiler][22m[39m [34m[1mUpdated template[22m[39m
+[90m[1m[pinf.it][builder.com/template/v0:templateCompiler][22m[39m [90m[1mTemplate update count:[22m[39m [90m[1m1[22m[39m
+[34m[1m[pinf.it][22m[39m [34m[1mWriting to: TeStLoCaLiZeD/.~/template.js[22m[39m
+[34m[1m[pinf.it][22m[39m [34m[1mWriting to: TeStLoCaLiZeD/.~/app.js[22m[39m
+[34m[1m[pinf.it][builder.com/template/v0:templateCompiler][22m[39m [34m[1mUpdated template[22m[39m
+[90m[1m[pinf.it][builder.com/template/v0:templateCompiler][22m[39m [90m[1mTemplate update count:[22m[39m [90m[1m2[22m[39m
+[34m[1m[pinf.it][22m[39m [34m[1mWriting to: TeStLoCaLiZeD/.~/template.js[22m[39m
+[34m[1m[pinf.it][22m[39m [34m[1mWriting to: TeStLoCaLiZeD/.~/app.js[22m[39m
+[34m[1m[pinf.it][builder.com/template/v0:templateCompiler][22m[39m [34m[1mUpdated template[22m[39m
+[90m[1m[pinf.it][builder.com/template/v0:templateCompiler][22m[39m [90m[1mTemplate update count:[22m[39m [90m[1m3[22m[39m
+[34m[1m[pinf.it][22m[39m [34m[1mWriting to: TeStLoCaLiZeD/.~/template.js[22m[39m
+[34m[1m[pinf.it][22m[39m [34m[1mWriting to: TeStLoCaLiZeD/.~/app.js[22m[39m
+--- debug ---
+[37m[pinf.it][39m[30m[ TeStLoCaLiZeD/pinf.it.js:527 ][39m [37mResolving uri '.' from baseDir 'TeStLoCaLiZeD'[39m
+[37m[pinf.it][39m[30m[ TeStLoCaLiZeD/pinf.it.js:557 ][39m [37mResolved uri '.' from baseDir 'TeStLoCaLiZeD' to '#!/#!'[39m
+[37m[pinf.it][39m[30m[ TeStLoCaLiZeD/pinf.it.js:527 ][39m [37mResolving uri 'gi0.PINF.it/core/v0' from baseDir 'TeStLoCaLiZeD/#!'[39m
+[37m[pinf.it][39m[30m[ TeStLoCaLiZeD/pinf.it.js:557 ][39m [37mResolved uri 'gi0.PINF.it/core/v0' from baseDir 'TeStLoCaLiZeD/#!' to '../../../#!/gi0.PINF.it/#!'[39m
+[37m[pinf.it][39m[30m[ TeStLoCaLiZeD/pinf.it.js:527 ][39m [37mResolving uri 'builder.com' from baseDir 'TeStLoCaLiZeD/#!'[39m
+[37m[pinf.it][39m[30m[ TeStLoCaLiZeD/pinf.it.js:557 ][39m [37mResolved uri 'builder.com' from baseDir 'TeStLoCaLiZeD/#!' to 'builder.com/#!'[39m
+[34m[1m[pinf.it][builder.com/template/v0:templateCompiler][22m[39m[30m[ TeStLoCaLiZeD/#!/builder.com/template.inf.js:14 ][39m [34m[1mUpdated template[22m[39m
+[90m[1m[pinf.it][builder.com/template/v0:templateCompiler][22m[39m[30m[ TeStLoCaLiZeD/#!/builder.com/template.inf.js:16 ][39m [90m[1mTemplate update count:[22m[39m [90m[1m1[22m[39m
+[34m[1m[pinf.it][22m[39m[30m[ TeStLoCaLiZeD/#!/gi0.PINF.it/core.inf.js:59 ][39m [34m[1mWriting to: TeStLoCaLiZeD/.~/template.js[22m[39m
+[37m[pinf.it][builder.com/app/v0:appCompiler][39m[30m[ TeStLoCaLiZeD/#!/builder.com/app.inf.js:17 ][39m [37mLoading template from path:[39m [37mTeStLoCaLiZeD/.~/template.js[39m
+[34m[1m[pinf.it][22m[39m[30m[ TeStLoCaLiZeD/#!/gi0.PINF.it/core.inf.js:59 ][39m [34m[1mWriting to: TeStLoCaLiZeD/.~/app.js[22m[39m
+[34m[1m[pinf.it][builder.com/template/v0:templateCompiler][22m[39m[30m[ TeStLoCaLiZeD/#!/builder.com/template.inf.js:14 ][39m [34m[1mUpdated template[22m[39m
+[90m[1m[pinf.it][builder.com/template/v0:templateCompiler][22m[39m[30m[ TeStLoCaLiZeD/#!/builder.com/template.inf.js:16 ][39m [90m[1mTemplate update count:[22m[39m [90m[1m2[22m[39m
+[34m[1m[pinf.it][22m[39m[30m[ TeStLoCaLiZeD/#!/gi0.PINF.it/core.inf.js:59 ][39m [34m[1mWriting to: TeStLoCaLiZeD/.~/template.js[22m[39m
+[37m[pinf.it][builder.com/app/v0:appCompiler][39m[30m[ TeStLoCaLiZeD/#!/builder.com/app.inf.js:17 ][39m [37mLoading template from path:[39m [37mTeStLoCaLiZeD/.~/template.js[39m
+[34m[1m[pinf.it][22m[39m[30m[ TeStLoCaLiZeD/#!/gi0.PINF.it/core.inf.js:59 ][39m [34m[1mWriting to: TeStLoCaLiZeD/.~/app.js[22m[39m
+[34m[1m[pinf.it][builder.com/template/v0:templateCompiler][22m[39m[30m[ TeStLoCaLiZeD/#!/builder.com/template.inf.js:14 ][39m [34m[1mUpdated template[22m[39m
+[90m[1m[pinf.it][builder.com/template/v0:templateCompiler][22m[39m[30m[ TeStLoCaLiZeD/#!/builder.com/template.inf.js:16 ][39m [90m[1mTemplate update count:[22m[39m [90m[1m3[22m[39m
+[34m[1m[pinf.it][22m[39m[30m[ TeStLoCaLiZeD/#!/gi0.PINF.it/core.inf.js:59 ][39m [34m[1mWriting to: TeStLoCaLiZeD/.~/template.js[22m[39m
+[37m[pinf.it][builder.com/app/v0:appCompiler][39m[30m[ TeStLoCaLiZeD/#!/builder.com/app.inf.js:17 ][39m [37mLoading template from path:[39m [37mTeStLoCaLiZeD/.~/template.js[39m
+[34m[1m[pinf.it][22m[39m[30m[ TeStLoCaLiZeD/#!/gi0.PINF.it/core.inf.js:59 ][39m [34m[1mWriting to: TeStLoCaLiZeD/.~/app.js[22m[39m

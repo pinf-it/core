@@ -1,0 +1,12 @@
+#!/usr/bin/env inf
+{
+    "#": "gi0.PINF.it/core",
+
+    "#": {
+        "/._dist/readme": "readme.com"
+    },
+
+    ":readme:": "/._dist/readme @ generator/v0",
+
+    "gi0.PINF.it/core/v0 @ # :readme: write() /._dist/README.md": "My project readme!"
+}

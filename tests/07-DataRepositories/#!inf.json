@@ -1,0 +1,22 @@
+#!/usr/bin/env inf
+{
+    "#": "gi0.PINF.it/core",
+
+    "#": {
+        "/._dist/readme": "readme.com",
+        "/._dist/todo": "todo.com"
+    },
+
+    ":readme:": "/._dist/readme @ generator/v0",
+    ":todo:": "/._dist/todo @ list/v0",
+
+    "gi0.PINF.it/core/v0 @ # :readme: write() /._dist/README1.md": "./config.json ~ message1",
+    "gi0.PINF.it/core/v0 @ # :readme: write() /._dist/README2.md": "./config.json ~ message2",
+
+    "gi0.PINF.it/core/v0 @ # :todo: write() /._dist/TODO.csv": [
+        "Item 1",
+        "Item 2"
+    ],
+
+    "#": "./sub/"
+}

@@ -1,0 +1,21 @@
+
+Usage: pinf.it [OPTIONS] [COMMAND] [FILEPATH]
+
+OPTIONS:
+
+  --verbose     Enable verbose logging.
+   -v
+  --debug       Enable debug logging.
+   -d
+  --silent      Silence all logging.
+   -s
+  --watch       Watch for file changes and re-execute tools.
+   -w
+  --report      Log tool API report in JSON format when exiting.
+
+COMMAND:
+
+  help      Show this usage info.
+
+FILEPATH: Path to *[[#!/]#!inf.json] file to execute.
+

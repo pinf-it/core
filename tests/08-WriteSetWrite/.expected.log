@@ -1,0 +1,6 @@
+[34m[1m[pinf.it][22m[39m [34m[1mWriting to: TeStLoCaLiZeD/.~/template.js[22m[39m
+[34m[1m[pinf.it][22m[39m [34m[1mWriting to: TeStLoCaLiZeD/.~/app.js[22m[39m
+---
+console.log('%message%');
+---
+console.log('Hello World!');

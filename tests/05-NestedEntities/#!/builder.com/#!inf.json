@@ -1,0 +1,17 @@
+{
+    "builder/v0 #": "${__DIRNAME__}/builder.",
+    "builder/v0 # setIdAliases()": [
+        "builder.com/foo/bar"
+    ],
+
+    "gi0-PINF-it @ # register()": "builder/v0 # id()",
+
+
+    "#": {
+        "/._dist/readme": "../readme.com"
+    },
+
+    ":readme:": "/._dist/readme @ generator/v0",
+
+    "gi0-PINF-it @ # :readme: write() /._dist/README.md": "builder.com readme!"
+}

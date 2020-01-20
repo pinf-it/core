@@ -1,0 +1,4 @@
+{
+    "builder/v0 #": "${__DIRNAME__}/builder.",
+    "gi0-PINF-it @ # register()": "builder/v0 # id()"
+}

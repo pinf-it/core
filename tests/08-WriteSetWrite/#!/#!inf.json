@@ -1,0 +1,18 @@
+#!/usr/bin/env inf
+{
+    "#": "gi0.PINF.it/core/v0",
+
+    "#": {
+        "builder": "builder.com"
+    },
+
+    ":templateCompiler:": "builder @ template/v0",
+    ":appCompiler:": "builder @ app/v0",
+
+    "gi0.PINF.it/core/v0 @ # :templateCompiler: write() /.~/template.js": "console.log('%message%');\n",
+
+    "gi0.PINF.it/core/v0 @ # :appCompiler: set() templatePath": "/.~/template.js",
+    "gi0.PINF.it/core/v0 @ # :appCompiler: write() /.~/app.js": {
+        "message": "Hello World!"
+    }
+}

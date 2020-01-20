@@ -1,23 +1,23 @@
 -- 1 --
-[builder.com] inf(): builder.com/builder/v0
+[builder.com] inf(): builder/v0
 [gi0-PINF-it] register(): gi0-PINF-it {
     "canonical": "builder.com/builder/v0",
     "aliases": [
         "builder.com/foo/bar"
     ]
 }
-[builder.com] inf(): builder3
+[builder.com] interface(): builder3
 [gi0-PINF-it] write(): gi0-PINF-it write() /._dist/wrapper.js /._dist/our-wrapper/._dist/wrapper.js WRAPPER (built)
-[wrapper.com] inf(): wrapper.com/wrapper/v0
+[wrapper.com] inf(): wrapper/v0
 [gi0-PINF-it] register(): gi0-PINF-it {
     "canonical": "wrapper.com/wrapper/v0",
     "aliases": [
         "wrapper.com/foo/bar"
     ]
 }
-[builder.com] inf(): my-builder
-[wrapper.com] inf(): my-wrapper
+[builder.com] interface(): my-builder
 [gi0-PINF-it] write(): gi0-PINF-it write() /._dist/browser.js /._dist/browser.js HELLO WORLD (BUILDER) (built)
+[wrapper.com] interface(): my-wrapper
 [gi0-PINF-it] write(): gi0-PINF-it write() /._dist/wrapper.js /._dist/wrapper.js [wrapped][Hello World (wrapper)]
 api (main.inf.js) {
     "/._dist/our-builder|gi0-PINF-it": [
@@ -377,25 +377,25 @@ api (main.inf.js) {
     ]
 }
 -- 2 --
-[builder.com] inf(): builder.com/builder/v0
+[builder.com] inf(): builder/v0
 [gi0-PINF-it] register(): gi0-PINF-it {
     "canonical": "builder.com/builder/v0",
     "aliases": [
         "builder.com/foo/bar"
     ]
 }
-[builder.com] inf(): builder3
+[builder.com] interface(): builder3
 [gi0-PINF-it] write(): gi0-PINF-it write() /._dist/wrapper.js /._dist/our-wrapper/._dist/wrapper.js WRAPPER (built)
-[wrapper.com] inf(): wrapper.com/wrapper/v0
+[wrapper.com] inf(): wrapper/v0
 [gi0-PINF-it] register(): gi0-PINF-it {
     "canonical": "wrapper.com/wrapper/v0",
     "aliases": [
         "wrapper.com/foo/bar"
     ]
 }
-[builder.com] inf(): my-builder
-[wrapper.com] inf(): my-wrapper
+[builder.com] interface(): my-builder
 [gi0-PINF-it] write(): gi0-PINF-it write() /._dist/browser.js /._dist/browser.js HELLO WORLD (BUILDER) (built)
+[wrapper.com] interface(): my-wrapper
 [gi0-PINF-it] write(): gi0-PINF-it write() /._dist/wrapper.js /._dist/wrapper.js [wrapped][Hello World (wrapper)]
 api (main.inf.js) {
     "/._dist/our-builder|gi0-PINF-it": [
@@ -755,25 +755,25 @@ api (main.inf.js) {
     ]
 }
 -- 3 --
-[builder.com] inf(): builder.com/builder/v0
+[builder.com] inf(): builder/v0
 [gi0-PINF-it] register(): gi0-PINF-it {
     "canonical": "builder.com/builder/v0",
     "aliases": [
         "builder.com/foo/bar"
     ]
 }
-[builder.com] inf(): builder3
+[builder.com] interface(): builder3
 [gi0-PINF-it] write(): gi0-PINF-it write() /._dist/wrapper.js /._dist/our-wrapper/._dist/wrapper.js WRAPPER (built)
-[wrapper.com] inf(): wrapper.com/wrapper/v0
+[wrapper.com] inf(): wrapper/v0
 [gi0-PINF-it] register(): gi0-PINF-it {
     "canonical": "wrapper.com/wrapper/v0",
     "aliases": [
         "wrapper.com/foo/bar"
     ]
 }
-[builder.com] inf(): my-builder
-[wrapper.com] inf(): my-wrapper
+[builder.com] interface(): my-builder
 [gi0-PINF-it] write(): gi0-PINF-it write() /._dist/browser.js /._dist/browser.js HELLO WORLD (BUILDER) (built)
+[wrapper.com] interface(): my-wrapper
 [gi0-PINF-it] write(): gi0-PINF-it write() /._dist/wrapper.js /._dist/wrapper.js [wrapped][Hello World (wrapper)]
 api (main.inf.js) {
     "/._dist/our-builder|gi0-PINF-it": [
@@ -1133,26 +1133,26 @@ api (main.inf.js) {
     ]
 }
 -- 4 --
-[builder.com] inf(): builder.com/builder/v0
+[builder.com] inf(): builder/v0
 [gi0-PINF-it] register(): gi0-PINF-it {
     "canonical": "builder.com/builder/v0",
     "aliases": [
         "builder.com/foo/bar"
     ]
 }
-[builder.com] inf(): builder3
+[builder.com] interface(): builder3
 [gi0-PINF-it] write(): gi0-PINF-it write() /._dist/wrapper.js /._dist/wrapper/subpath/._dist/wrapper.js WRAPPER (built)
-[wrapper.com] inf(): wrapper.com/wrapper/v0
+[wrapper.com] inf(): wrapper/v0
 [gi0-PINF-it] register(): gi0-PINF-it {
     "canonical": "wrapper.com/wrapper/v0",
     "aliases": [
         "wrapper.com/foo/bar"
     ]
 }
-[builder.com] inf(): builder1
-[builder.com] inf(): builder2
-[wrapper.com] inf(): wrapper3
+[builder.com] interface(): builder1
 [gi0-PINF-it] write(): gi0-PINF-it write() /._dist/browser1.js /._dist/browser1.js HELLO WORLD 1 (built)
+[builder.com] interface(): builder2
+[wrapper.com] interface(): wrapper3
 [gi0-PINF-it] write(): gi0-PINF-it write() /._dist/browser2.js /._dist/browser2.js [wrapped][HELLO WORLD 2 (built)]
 [gi0-PINF-it] write(): gi0-PINF-it write() /._dist/browser3.js /._dist/browser3.js [WRAPPED][HELLO WORLD 3] (built)
 api (main.inf.js) {
@@ -1362,22 +1362,9 @@ api (main.inf.js) {
         }
     ]
 }
-[gi0-PINF-it] register(): gi0-PINF-it {
-    "canonical": "builder.com/builder/v0",
-    "aliases": [
-        "builder.com/foo/bar"
-    ]
-}
-[gi0-PINF-it] write(): gi0-PINF-it write() /._dist/wrapper.js /._dist/our-wrapper/._dist/wrapper.js WRAPPER (built)
-[gi0-PINF-it] register(): gi0-PINF-it {
-    "canonical": "wrapper.com/wrapper/v0",
-    "aliases": [
-        "wrapper.com/foo/bar"
-    ]
-}
-[builder.com] inf(): my-builder
-[wrapper.com] inf(): my-wrapper
+[builder.com] interface(): my-builder
 [gi0-PINF-it] write(): gi0-PINF-it write() /._dist/browser.js /._dist/browser.js HELLO WORLD (BUILDER) (built)
+[wrapper.com] interface(): my-wrapper
 [gi0-PINF-it] write(): gi0-PINF-it write() /._dist/wrapper.js /._dist/wrapper.js [wrapped][Hello World (wrapper)]
 api (main.inf.js) {
     "/._dist/builder|gi0-PINF-it": [
@@ -1657,110 +1644,6 @@ api (main.inf.js) {
             "implements": [],
             "api": {
                 "ran": true
-            }
-        }
-    ],
-    "/._dist/our-builder|gi0-PINF-it": [
-        {
-            "anchor": [
-                [
-                    {
-                        "literal": "/._dist/our-builder"
-                    }
-                ],
-                [
-                    {
-                        "alias": "gi0-PINF-it",
-                        "resolved": "gi0-PINF-it"
-                    }
-                ]
-            ],
-            "implements": [
-                {
-                    "alias": "gi0-PINF-it",
-                    "resolved": "gi0-PINF-it"
-                }
-            ],
-            "api": {
-                "event": "[gi0-PINF-it] register():",
-                "NS": "gi0-PINF-it",
-                "value": {
-                    "canonical": "builder.com/builder/v0",
-                    "aliases": [
-                        "builder.com/foo/bar"
-                    ]
-                }
-            }
-        }
-    ],
-    "/._dist/our-wrapper|gi0-PINF-it": [
-        {
-            "anchor": [
-                [
-                    {
-                        "literal": "/._dist/our-wrapper"
-                    }
-                ],
-                [
-                    {
-                        "alias": "gi0-PINF-it",
-                        "resolved": "gi0-PINF-it"
-                    }
-                ]
-            ],
-            "implements": [
-                {
-                    "alias": "gi0-PINF-it",
-                    "resolved": "gi0-PINF-it"
-                }
-            ],
-            "api": {
-                "event": "[gi0-PINF-it] write():",
-                "NS": "gi0-PINF-it",
-                "pointer": "write() /._dist/wrapper.js",
-                "path": "/._dist/our-wrapper/._dist/wrapper.js",
-                "value": "WRAPPER (built)",
-                "owner": {
-                    "event": "[gi0-PINF-it] register():",
-                    "NS": "gi0-PINF-it",
-                    "value": {
-                        "canonical": "builder.com/builder/v0",
-                        "aliases": [
-                            "builder.com/foo/bar"
-                        ]
-                    }
-                }
-            }
-        },
-        {
-            "anchor": [
-                [
-                    {
-                        "literal": "/._dist/our-wrapper"
-                    }
-                ],
-                [
-                    {
-                        "alias": "gi0-PINF-it",
-                        "resolved": "gi0-PINF-it"
-                    }
-                ]
-            ],
-            "implements": [
-                {
-                    "alias": "gi0-PINF-it",
-                    "resolved": "gi0-PINF-it"
-                }
-            ],
-            "api": {
-                "event": "[gi0-PINF-it] register():",
-                "NS": "gi0-PINF-it",
-                "value": {
-                    "canonical": "wrapper.com/wrapper/v0",
-                    "aliases": [
-                        "wrapper.com/foo/bar"
-                    ]
-                }
             }
         }
     ]
@@ -2050,110 +1933,6 @@ api (main.inf.js) {
             "implements": [],
             "api": {
                 "ran": true
-            }
-        }
-    ],
-    "/._dist/our-builder|gi0-PINF-it": [
-        {
-            "anchor": [
-                [
-                    {
-                        "literal": "/._dist/our-builder"
-                    }
-                ],
-                [
-                    {
-                        "alias": "gi0-PINF-it",
-                        "resolved": "gi0-PINF-it"
-                    }
-                ]
-            ],
-            "implements": [
-                {
-                    "alias": "gi0-PINF-it",
-                    "resolved": "gi0-PINF-it"
-                }
-            ],
-            "api": {
-                "event": "[gi0-PINF-it] register():",
-                "NS": "gi0-PINF-it",
-                "value": {
-                    "canonical": "builder.com/builder/v0",
-                    "aliases": [
-                        "builder.com/foo/bar"
-                    ]
-                }
-            }
-        }
-    ],
-    "/._dist/our-wrapper|gi0-PINF-it": [
-        {
-            "anchor": [
-                [
-                    {
-                        "literal": "/._dist/our-wrapper"
-                    }
-                ],
-                [
-                    {
-                        "alias": "gi0-PINF-it",
-                        "resolved": "gi0-PINF-it"
-                    }
-                ]
-            ],
-            "implements": [
-                {
-                    "alias": "gi0-PINF-it",
-                    "resolved": "gi0-PINF-it"
-                }
-            ],
-            "api": {
-                "event": "[gi0-PINF-it] write():",
-                "NS": "gi0-PINF-it",
-                "pointer": "write() /._dist/wrapper.js",
-                "path": "/._dist/our-wrapper/._dist/wrapper.js",
-                "value": "WRAPPER (built)",
-                "owner": {
-                    "event": "[gi0-PINF-it] register():",
-                    "NS": "gi0-PINF-it",
-                    "value": {
-                        "canonical": "builder.com/builder/v0",
-                        "aliases": [
-                            "builder.com/foo/bar"
-                        ]
-                    }
-                }
-            }
-        },
-        {
-            "anchor": [
-                [
-                    {
-                        "literal": "/._dist/our-wrapper"
-                    }
-                ],
-                [
-                    {
-                        "alias": "gi0-PINF-it",
-                        "resolved": "gi0-PINF-it"
-                    }
-                ]
-            ],
-            "implements": [
-                {
-                    "alias": "gi0-PINF-it",
-                    "resolved": "gi0-PINF-it"
-                }
-            ],
-            "api": {
-                "event": "[gi0-PINF-it] register():",
-                "NS": "gi0-PINF-it",
-                "value": {
-                    "canonical": "wrapper.com/wrapper/v0",
-                    "aliases": [
-                        "wrapper.com/foo/bar"
-                    ]
-                }
             }
         }
     ]

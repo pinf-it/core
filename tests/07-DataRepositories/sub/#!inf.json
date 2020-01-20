@@ -1,0 +1,10 @@
+#!/usr/bin/env inf
+{
+    "gi0.PINF.it/core/v0 @ # :readme: write() /._dist/sub/README1.md": "./config.json ~ message1",
+    "gi0.PINF.it/core/v0 @ # :readme: write() /._dist/sub/README2.md": "./config.json ~ message2",
+
+    "gi0.PINF.it/core/v0 @ # :todo: write() /._dist/sub/TODO.csv": [
+        "Sub Item 1",
+        "Sub Item 2"
+    ]
+}

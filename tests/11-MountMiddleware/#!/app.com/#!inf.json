@@ -1,0 +1,3 @@
+{
+    "middleware/v0 #": "${__DIRNAME__}/middleware."
+}

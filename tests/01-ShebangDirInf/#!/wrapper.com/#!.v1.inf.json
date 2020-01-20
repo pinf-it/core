@@ -1,0 +1,15 @@
+{
+    "#": "../gi0-PINF-it/#!",
+
+    "#": {
+        "/._dist/my-builder": "../builder.com/#!"
+    },
+
+    ":builder3:": "/._dist/my-builder @ builder/v0",
+
+    "gi0-PINF-it @ # :builder3: write() /._dist/wrapper.js": "Wrapper",
+
+
+    "wrapper/v0 #": "${__DIRNAME__}/wrapper.",
+    "gi0-PINF-it @ # register()": "wrapper/v0 # id()"
+}

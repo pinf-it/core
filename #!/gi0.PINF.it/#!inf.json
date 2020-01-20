@@ -1,0 +1,8 @@
+{
+    "gi0.PINF.it/core/v0 @": "gi0.PINF.it/core/v0",
+    "gi0.PINF.it/core/v0 @ #": "./core.",
+
+    "//": "gi0.pinf.it/core/v0/tool/workspace",
+    "//": "gi0.pinf.it/core/v0/tool/instance",
+    "//": "gi0.pinf.it/core/v0/tool/invocation"
+}
