@@ -1,13 +1,13 @@
 {
   "uid": "gi0.PINF.it/core",
   "name": "@pinf-it/core",
-  "version": "0.0.1-pre.0",
+  "version": "0.0.1-pre.1",
   "bin": {
     "pinf.it": "pinf.it.js"
   },
   "main": "pinf.it.js",
   "dependencies": {
-    "@pinf-it/inf": "^0.2.0-pre.11",
+    "@pinf-it/inf": "^0.2.0-pre.12",
     "moment": "^2.24.0",
     "uuid": "^3.3.3",
     "inquirer": "^7.0.3",
