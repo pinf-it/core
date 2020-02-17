@@ -3,3 +3,5 @@
 export PINF_IT_TEST_VERBOSE=1
 
 pinf.it .
+
+echo -e "\nOK"

@@ -1,9 +1,9 @@
+>>>TEST_IGNORE_LINE:\"fsid\"<<<
+>>>TEST_IGNORE_LINE:\"hashid\"<<<
+>>>TEST_IGNORE_LINE:\"fshashid\"<<<
 [readme.com] Workspace: {
     "#": "gi0.pinf.it/core/v0/tool/workspace",
     "id": "TeStLoCaLiZeD",
-    "fsid": "~christoph~projects~gi0.PINF.it~core~tests~07-DataRepositories",
-    "hashid": "b2bb39bb5ac530e6292eb2c51592292377a4db64",
-    "fshashid": "b2bb39b",
     "dirs": {
         "data": "TeStLoCaLiZeD/._/gi0.PINF.it~core~v0/data",
         "profile": "TeStLoCaLiZeD/._/gi0.PINF.it~core~v0/profile",
@@ -16,9 +16,6 @@
     "#": "gi0.pinf.it/core/v0/tool/instance",
     "kindId": "readme.com/generator/v0",
     "id": "readme.com/generator/v0:readme",
-    "fsid": "readme.com~generator~v0:readme",
-    "hashid": "8c9b03304b5534fa6d2362a009b8262676029179",
-    "fshashid": "8c9b033",
     "dirs": {
         "data": "TeStLoCaLiZeD/._/gi0.PINF.it~core~v0/data/tools/8c9b033",
         "profile": "TeStLoCaLiZeD/._/gi0.PINF.it~core~v0/profile/tools/8c9b033",
@@ -30,9 +27,6 @@
 [readme.com] Invocation: {
     "#": "gi0.pinf.it/core/v0/tool/invocation",
     "id": ":/._dist/README1.md",
-    "fsid": ":~._dist~README1.md",
-    "hashid": "380cb343c1a403332244d8cf4ff4d95c25c3f125",
-    "fshashid": "380cb34",
     "dirs": {
         "data": "TeStLoCaLiZeD/._/gi0.PINF.it~core~v0/data/380cb34/TEST_YY-MMM-DD/TEST_RUNID",
         "profile": "TeStLoCaLiZeD/._/gi0.PINF.it~core~v0/profile/tools/8c9b033",
@@ -60,9 +54,6 @@
 [readme.com] Invocation: {
     "#": "gi0.pinf.it/core/v0/tool/invocation",
     "id": ":/._dist/README2.md",
-    "fsid": ":~._dist~README2.md",
-    "hashid": "2e869bedfcd2a13b4a1162b28933f5d30ea4c61f",
-    "fshashid": "2e869be",
     "dirs": {
         "data": "TeStLoCaLiZeD/._/gi0.PINF.it~core~v0/data/2e869be/TEST_YY-MMM-DD/TEST_RUNID",
         "profile": "TeStLoCaLiZeD/._/gi0.PINF.it~core~v0/profile/tools/8c9b033",
@@ -90,9 +81,6 @@
 [todo.com] Workspace: {
     "#": "gi0.pinf.it/core/v0/tool/workspace",
     "id": "TeStLoCaLiZeD",
-    "fsid": "~christoph~projects~gi0.PINF.it~core~tests~07-DataRepositories",
-    "hashid": "b2bb39bb5ac530e6292eb2c51592292377a4db64",
-    "fshashid": "b2bb39b",
     "dirs": {
         "data": "TeStLoCaLiZeD/._/gi0.PINF.it~core~v0/data",
         "profile": "TeStLoCaLiZeD/._/gi0.PINF.it~core~v0/profile",
@@ -105,9 +93,6 @@
     "#": "gi0.pinf.it/core/v0/tool/instance",
     "kindId": "todo.com/list/v0",
     "id": "todo.com/list/v0:todo",
-    "fsid": "todo.com~list~v0:todo",
-    "hashid": "5b48092dda9cf428ae0ce62f672b7874db1046a4",
-    "fshashid": "5b48092",
     "dirs": {
         "data": "TeStLoCaLiZeD/._/gi0.PINF.it~core~v0/data/tools/5b48092",
         "profile": "TeStLoCaLiZeD/._/gi0.PINF.it~core~v0/profile/tools/5b48092",
@@ -119,9 +104,6 @@
 [todo.com] Invocation: {
     "#": "gi0.pinf.it/core/v0/tool/invocation",
     "id": ":/._dist/TODO.csv",
-    "fsid": ":~._dist~TODO.csv",
-    "hashid": "723729f041d09d68d65dce32c2b397a944a1a972",
-    "fshashid": "723729f",
     "dirs": {
         "data": "TeStLoCaLiZeD/._/gi0.PINF.it~core~v0/data/723729f/TEST_YY-MMM-DD/TEST_RUNID",
         "profile": "TeStLoCaLiZeD/._/gi0.PINF.it~core~v0/profile/tools/5b48092",
@@ -152,9 +134,6 @@
 [readme.com] Invocation: {
     "#": "gi0.pinf.it/core/v0/tool/invocation",
     "id": "sub:/._dist/sub/README1.md",
-    "fsid": "sub:~._dist~sub~README1.md",
-    "hashid": "6bb668064f2dd04ab8254443fc8c2dcc4811c2b6",
-    "fshashid": "6bb6680",
     "dirs": {
         "data": "TeStLoCaLiZeD/sub/._/gi0.PINF.it~core~v0/data/6bb6680/TEST_YY-MMM-DD/TEST_RUNID",
         "profile": "TeStLoCaLiZeD/._/gi0.PINF.it~core~v0/profile/tools/8c9b033",
@@ -182,9 +161,6 @@
 [readme.com] Invocation: {
     "#": "gi0.pinf.it/core/v0/tool/invocation",
     "id": "sub:/._dist/sub/README2.md",
-    "fsid": "sub:~._dist~sub~README2.md",
-    "hashid": "ba0e5102fac4fc9f480020d4050d0f5e77ec2466",
-    "fshashid": "ba0e510",
     "dirs": {
         "data": "TeStLoCaLiZeD/sub/._/gi0.PINF.it~core~v0/data/ba0e510/TEST_YY-MMM-DD/TEST_RUNID",
         "profile": "TeStLoCaLiZeD/._/gi0.PINF.it~core~v0/profile/tools/8c9b033",
@@ -212,9 +188,6 @@
 [todo.com] Invocation: {
     "#": "gi0.pinf.it/core/v0/tool/invocation",
     "id": "sub:/._dist/sub/TODO.csv",
-    "fsid": "sub:~._dist~sub~TODO.csv",
-    "hashid": "e3b8dbe925c706870dfcc6fa1124eaee2e8153fd",
-    "fshashid": "e3b8dbe",
     "dirs": {
         "data": "TeStLoCaLiZeD/sub/._/gi0.PINF.it~core~v0/data/e3b8dbe/TEST_YY-MMM-DD/TEST_RUNID",
         "profile": "TeStLoCaLiZeD/._/gi0.PINF.it~core~v0/profile/tools/5b48092",
@@ -384,3 +357,4 @@
         }
     ]
 }
+OK

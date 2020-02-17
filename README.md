@@ -1,6 +1,8 @@
 gi0.PINF.it
 ===========
 
+[![CircleCI](https://circleci.com/gh/pinf-it/core.svg?style=svg)](https://circleci.com/gh/pinf-it/core)
+
 > Tools must be easily leveraged or they remain unused.
 
 **PINF.it** is a JSON & NodeJS-based tooling abstraction that configures and invokes typical web software development tooling commands & services. Using a declarative JSON-based composition & instruction language, tooling may be easily and consistently applied to any project.

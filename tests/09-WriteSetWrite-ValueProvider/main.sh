@@ -20,4 +20,10 @@ pinf.it . --verbose
 
 echo "--- debug ---"
 
+echo "TEST_MATCH_IGNORE>>>"
+
 pinf.it . --debug
+
+echo "<<<TEST_MATCH_IGNORE"
+
+echo "OK"
