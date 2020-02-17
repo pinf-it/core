@@ -1,7 +1,7 @@
 {
   "uid": "gi0.PINF.it/core",
   "name": "@pinf-it/core",
-  "version": "0.0.1",
+  "version": "0.0.1-pre.0",
   "bin": {
     "pinf.it": "pinf.it.js"
   },
