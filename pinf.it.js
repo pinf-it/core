@@ -421,7 +421,8 @@ class Runner {
                     subUri: subUri,
                     lookupDirs: [
                         '',
-                        'node_modules'
+                        'node_modules',
+                        'node_modules/*'
                     ]
                 });
             }
