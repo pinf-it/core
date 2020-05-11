@@ -1,0 +1,47 @@
+#!/usr/bin/env inf
+{
+    "#": "gi0.PINF.it/core/v0",
+
+    "#": {
+        "builder": "builder.com"
+    },
+
+    ":transform:": "builder @ transform/v0",
+    ":reissue:": "builder @ reissue/v0",
+
+    ":start_string:": "builder @ start_string/v0",
+    ":start_stream:": "builder @ start_stream/v0",
+    ":start_buffer:": "builder @ start_buffer/v0",
+    ":start_value_provider_string:": "builder @ start_value_provider_string/v0",
+    ":start_value_provider_stream:": "builder @ start_value_provider_stream/v0",
+    ":start_value_provider_buffer:": "builder @ start_value_provider_buffer/v0",
+
+    "gi0.PINF.it/core/v0 @ # :start_string: :transform: write() /.~/script01.js": "console.log('Hello World - 01');\n",
+    "gi0.PINF.it/core/v0 @ # :start_stream: :transform: write() /.~/script02.js": "console.log('Hello World - 02');\n",
+    "gi0.PINF.it/core/v0 @ # :start_buffer: :transform: write() /.~/script03.js": "console.log('Hello World - 03');\n",
+    "gi0.PINF.it/core/v0 @ # :start_value_provider_string: :transform: write() /.~/script04.js": "console.log('Hello World - 04');\n",
+    "gi0.PINF.it/core/v0 @ # :start_value_provider_stream: :transform: write() /.~/script05.js": "console.log('Hello World - 05');\n",
+    "gi0.PINF.it/core/v0 @ # :start_value_provider_buffer: :transform: write() /.~/script06.js": "console.log('Hello World - 06');\n",
+
+    "gi0.PINF.it/core/v0 @ # :start_string: :reissue: :transform: write() /.~/script11.js": "console.log('Hello World - 11');\n",
+    "gi0.PINF.it/core/v0 @ # :start_stream: :reissue: :transform: write() /.~/script12.js": "console.log('Hello World - 12');\n",
+    "gi0.PINF.it/core/v0 @ # :start_buffer: :reissue: :transform: write() /.~/script13.js": "console.log('Hello World - 13');\n",
+    "gi0.PINF.it/core/v0 @ # :start_value_provider_string: :reissue: :transform: write() /.~/script14.js": "console.log('Hello World - 14');\n",
+    "gi0.PINF.it/core/v0 @ # :start_value_provider_stream: :reissue: :transform: write() /.~/script15.js": "console.log('Hello World - 15');\n",
+    "gi0.PINF.it/core/v0 @ # :start_value_provider_buffer: :reissue: :transform: write() /.~/script16.js": "console.log('Hello World - 16');\n",
+
+    "# run": (run.bash.progress () >>>
+
+        sleep 1
+
+        echo "---"
+
+        cat .~/script*
+
+        touch "#!/builder.com/builder.inf.js"
+
+        sleep 1
+   <<<),
+
+    "gi0.PINF.it/core/v0 @ # unwatch()": ""
+}

@@ -1,0 +1,97 @@
+>>>TEST_IGNORE_LINE:\[pinf.it\].+Writing to:<<<
+--- check build result ---
+---
+.tmp/builder1/common-builder-resource.txt
+.tmp/builder1/builder-wrapped/common-wrapper-script01.js
+.tmp/builder1/builder-wrapped/sub-wrapper/common-wrapper-script02.js
+.tmp/builder1/builder-wrapped/wrapper-builder/common-builder-resource.txt
+.tmp/builder1/builder-wrapped/common-wrapper-resource.txt
+.tmp/builder1/builder-sub/common-builder-script02.js
+.tmp/builder1/common-builder-script01.js
+.tmp/builder1/common-builder-script03.js
+.tmp/script03.js
+.tmp/script01.js
+---
+Hello World - Common Builder - TeStLoCaLiZeD/.tmp/builder1
+console.log('[builder] Hello World - Wrapper - 01 - TeStLoCaLiZeD/.tmp/builder1');
+console.log('[builder] Hello World - Wrapper - 02 - TeStLoCaLiZeD/.tmp/builder1');
+Hello World - Common Builder - TeStLoCaLiZeD/.tmp/builder1/builder-wrapped/wrapper-builder
+Hello World - Common Wrapper - TeStLoCaLiZeD/.tmp/builder1/builder-wrapped
+console.log('[builder] Hello World - Builder - 02 - TeStLoCaLiZeD/.tmp/builder1');
+console.log('[builder] Hello World - Builder - 01 - TeStLoCaLiZeD/.tmp/builder1');
+console.log('[wrapper] Hello World - Builder - 03 - TeStLoCaLiZeD/.tmp/builder1/builder-wrapped');
+console.log('[wrapper] Hello World - 03 - wrapper: TeStLoCaLiZeD/.tmp/builder1/builder-wrapped');
+console.log('[builder] Hello World - 01 - builder: TeStLoCaLiZeD/.tmp/builder1');
+---
+--- remove partial build result ---
+--- shutting down ---
+---
+.tmp/builder1/common-builder-resource.txt
+.tmp/builder1/builder-wrapped/common-wrapper-script01.js
+.tmp/builder1/builder-wrapped/sub-wrapper/common-wrapper-script02.js
+.tmp/builder1/builder-wrapped/wrapper-builder/common-builder-resource.txt
+.tmp/builder1/builder-wrapped/common-wrapper-resource.txt
+.tmp/builder1/builder-sub/common-builder-script02.js
+.tmp/builder1/common-builder-script01.js
+.tmp/builder1/common-builder-script03.js
+.tmp/script03.js
+---
+Hello World - Common Builder - TeStLoCaLiZeD/.tmp/builder1
+console.log('[builder] Hello World - Wrapper - 01 - TeStLoCaLiZeD/.tmp/builder1');
+console.log('[builder] Hello World - Wrapper - 02 - TeStLoCaLiZeD/.tmp/builder1');
+Hello World - Common Builder - TeStLoCaLiZeD/.tmp/builder1/builder-wrapped/wrapper-builder
+Hello World - Common Wrapper - TeStLoCaLiZeD/.tmp/builder1/builder-wrapped
+console.log('[builder] Hello World - Builder - 02 - TeStLoCaLiZeD/.tmp/builder1');
+console.log('[builder] Hello World - Builder - 01 - TeStLoCaLiZeD/.tmp/builder1');
+console.log('[wrapper] Hello World - Builder - 03 - TeStLoCaLiZeD/.tmp/builder1/builder-wrapped');
+console.log('[wrapper] Hello World - 03 - wrapper: TeStLoCaLiZeD/.tmp/builder1/builder-wrapped');
+---
+--- check build result ---
+---
+.tmp/builder1/common-builder-resource.txt
+.tmp/builder1/builder-wrapped/common-wrapper-script01.js
+.tmp/builder1/builder-wrapped/sub-wrapper/common-wrapper-script02.js
+.tmp/builder1/builder-wrapped/wrapper-builder/common-builder-resource.txt
+.tmp/builder1/builder-wrapped/common-wrapper-resource.txt
+.tmp/builder1/builder-sub/common-builder-script02.js
+.tmp/builder1/common-builder-script01.js
+.tmp/builder1/common-builder-script03.js
+.tmp/script03.js
+.tmp/script01.js
+---
+Hello World - Common Builder - TeStLoCaLiZeD/.tmp/builder1
+console.log('[builder] Hello World - Wrapper - 01 - TeStLoCaLiZeD/.tmp/builder1');
+console.log('[builder] Hello World - Wrapper - 02 - TeStLoCaLiZeD/.tmp/builder1');
+Hello World - Common Builder - TeStLoCaLiZeD/.tmp/builder1/builder-wrapped/wrapper-builder
+Hello World - Common Wrapper - TeStLoCaLiZeD/.tmp/builder1/builder-wrapped
+console.log('[builder] Hello World - Builder - 02 - TeStLoCaLiZeD/.tmp/builder1');
+console.log('[builder] Hello World - Builder - 01 - TeStLoCaLiZeD/.tmp/builder1');
+console.log('[wrapper] Hello World - Builder - 03 - TeStLoCaLiZeD/.tmp/builder1/builder-wrapped');
+console.log('[wrapper] Hello World - 03 - wrapper: TeStLoCaLiZeD/.tmp/builder1/builder-wrapped');
+console.log('[builder] Hello World - 01 - builder: TeStLoCaLiZeD/.tmp/builder1');
+---
+--- remove partial build result ---
+[34m[1m[pinf.it][22m[39m [34m[1mTrigger rebuild() for [35mBuildResult[34m(kindId:[37mbuilder.com:builder/v0:onBuild[34m,path:[35m[1m/.tmp/script01.js[1m[34m)[22m[39m
+--- shutting down ---
+---
+.tmp/builder1/common-builder-resource.txt
+.tmp/builder1/builder-wrapped/common-wrapper-script01.js
+.tmp/builder1/builder-wrapped/sub-wrapper/common-wrapper-script02.js
+.tmp/builder1/builder-wrapped/wrapper-builder/common-builder-resource.txt
+.tmp/builder1/builder-wrapped/common-wrapper-resource.txt
+.tmp/builder1/builder-sub/common-builder-script02.js
+.tmp/builder1/common-builder-script01.js
+.tmp/builder1/common-builder-script03.js
+.tmp/script03.js
+.tmp/script01.js
+---
+Hello World - Common Builder - TeStLoCaLiZeD/.tmp/builder1
+console.log('[builder] Hello World - Wrapper - 01 - TeStLoCaLiZeD/.tmp/builder1');
+console.log('[builder] Hello World - Wrapper - 02 - TeStLoCaLiZeD/.tmp/builder1');
+Hello World - Common Builder - TeStLoCaLiZeD/.tmp/builder1/builder-wrapped/wrapper-builder
+Hello World - Common Wrapper - TeStLoCaLiZeD/.tmp/builder1/builder-wrapped
+console.log('[builder] Hello World - Builder - 02 - TeStLoCaLiZeD/.tmp/builder1');
+console.log('[builder] Hello World - Builder - 01 - TeStLoCaLiZeD/.tmp/builder1');
+console.log('[wrapper] Hello World - Builder - 03 - TeStLoCaLiZeD/.tmp/builder1/builder-wrapped');
+console.log('[wrapper] Hello World - 03 - wrapper: TeStLoCaLiZeD/.tmp/builder1/builder-wrapped');
+console.log('[builder] Hello World - 01 - builder: TeStLoCaLiZeD/.tmp/builder1');

@@ -1,0 +1,4 @@
+{
+    "transform/v0 #": "${__DIRNAME__}/builder.",
+    "start_string/v0 #": "${__DIRNAME__}/builder."
+}

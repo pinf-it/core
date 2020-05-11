@@ -1,0 +1,18 @@
+{
+    "builder/v0 #": "${__DIRNAME__}/builder.",
+
+    "#": {
+        "/": "./",
+        "/builder-sub": "./"
+    },
+
+    ":builder1:": "/ @ builder/v0",
+    ":builder2:": "/builder-sub @ builder/v0",
+
+    "builder/v0 # onHome()": (inf (filepaths) >>>
+        {
+            "gi0.PINF.it/build/v0 @ # :builder1: build() %%%filepaths.script01%%%": "console.log('[builder] Hello World - Builder - 01 - %homePath%');\n",
+            "gi0.PINF.it/build/v0 @ # :builder2: build() /builder-sub/common-builder-script02.js": "console.log('[builder] Hello World - Builder - 02 - %homePath%');\n"
+        }
+    <<<)
+}

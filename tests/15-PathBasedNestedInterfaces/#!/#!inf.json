@@ -1,0 +1,13 @@
+#!/usr/bin/env inf
+{
+    "#": "gi0.PINF.it/core/v0",
+
+    "#": {
+        "/.tmp/builder": "builder.com"
+    },
+
+    ":transform:": "/.tmp/builder @ transform/v0",
+    ":start_string:": "/.tmp/builder @ start_string/v0",
+
+    "gi0.PINF.it/core/v0 @ # :start_string: :transform: write() /script01.js": "console.log('Hello World - 01');\n"
+}

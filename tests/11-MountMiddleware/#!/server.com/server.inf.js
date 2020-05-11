@@ -17,7 +17,7 @@ exports['gi0.pinf.it/core/v0/tool'] = async function (workspace) {
 
                     const router = CONNECT();
 
-                    const apps = invocation.mounts.getAllForPrefix(invocation.config.docRoot);
+                    const apps = invocation.mounts.getMountsForPrefix(invocation.config.docRoot);
                     Object.keys(apps).forEach(function (route) {
                         router.use(route, apps[route]);
                     });

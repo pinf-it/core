@@ -5,6 +5,7 @@
         "builder.com/foo/bar"
     ]
 }
+[builder.com] inf(): /._dist/wrapper/subpath:builder3
 [builder.com] interface(): builder3
 [gi0-PINF-it] write(): gi0-PINF-it write() /._dist/wrapper.js /._dist/wrapper/subpath/._dist/wrapper.js WRAPPER (built)
 [wrapper.com] inf(): wrapper/v0
@@ -14,6 +15,9 @@
         "wrapper.com/foo/bar"
     ]
 }
+[builder.com] inf(): builder1
+[builder.com] inf(): builder2
+[wrapper.com] inf(): wrapper3
 [builder.com] interface(): builder1
 [gi0-PINF-it] write(): gi0-PINF-it write() /._dist/browser1.js /._dist/browser1.js HELLO WORLD 1 (built)
 [builder.com] interface(): builder2

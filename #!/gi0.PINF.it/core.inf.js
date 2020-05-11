@@ -1,7 +1,11 @@
 
+
+// # DEPRECATED: Use 'build/v0' or 'fs/v0' instead.
+
+
 exports.inf = async function (INF, NS) {
 
-    const workspaceEvents = INF.LIB.workspaceEvents = new INF.LIB.EventEmitter();
+    const workspaceEvents = INF.LIB.workspaceEvents;
 
     class FS extends INF.LIB.EventEmitter {
 
@@ -50,31 +54,67 @@ exports.inf = async function (INF, NS) {
 
         async writeFile (path, content) {
 
-            const absPath = INF.LIB.PATH.join(this._baseDir, path);
-
-            if (!Buffer.isBuffer(content)) {
-                content = Buffer.from(content);
-            }
-
-            INF.LIB.console.info(`Writing to: ${absPath}`);
-
-            let originalContent = null;
-
-            if (await this.exists(path)) {
-                originalContent = await INF.LIB.FS.readFile(absPath);
-            }
-
-            await INF.LIB.FS.outputFile(absPath, content);
-
             if (
-                !originalContent ||
-                !content.equals(originalContent)
+                content.length === path.length &&
+                content.toString() === path
             ) {
-                this.emit(`path.changed:${path}`);
+                const absPath = INF.LIB.PATH.join(this._baseDir, path);
+
+                // TODO: Index content?
+
+                // We act on the path
+
+                INF.LIB.console.info(`Tracking: ${absPath}`);
+
+console.error("TODO: Emit directory changed event for:", path);
+
+                // TODO: Index content
+                // TODO: Emit changed event
+
+            } else {
+                // We act on the content
+
+                const absPath = INF.LIB.PATH.join(this._baseDir, path);
+
+//console.error("WRITE CONTENT", content);
+
+                if (!Buffer.isBuffer(content)) {
+                    try {
+                        content = Buffer.from(content);
+                    } catch (err) {
+                        console.error('content:', content);
+                        throw err;
+                    }
+                }
+
+                INF.LIB.console.info(`Writing to: ${absPath}`);
+
+                let originalContent = null;
+
+                if (await this.exists(path)) {
+                    originalContent = await INF.LIB.FS.readFile(absPath);
+                }
+
+                await INF.LIB.FS.outputFile(absPath, content);
+
+                if (
+                    !originalContent ||
+                    !content.equals(originalContent)
+                ) {
+                    this.emit(`path.changed:${path}`);
+                }
             }
         }
 
         async writeStream (path, stream) {
+
+            if (!stream) {
+                throw new Error(`'stream' argument to writeStream() is null!`);
+            }
+            if (typeof stream.pipe !== 'function') {
+                console.error('stream:', stream);
+                throw new Error(`'stream' argument to writeStream() does not have a 'pipe()' method!`);
+            }
 
             const absPath = INF.LIB.PATH.join(this._baseDir, path);
 
@@ -165,31 +205,62 @@ exports.inf = async function (INF, NS) {
 
             self._baseDir = baseDir;
             self._mounts = {};
+            self._apps = {};
         }
 
         async exists (path) {
-            return (!!this._mounts[path]);
+            return (
+                !!this._mounts[path] ||
+                !!this._apps[path]
+            );
         }
 
         async mount (path, app) {
 
             // TODO: Write mount socket files to the filesystem.
 
-            INF.LIB.console.info(`Mounting to: ${INF.LIB.PATH.join(this._baseDir, path)}`);
+            INF.LIB.console.info(`Mounting route to: ${INF.LIB.PATH.join(this._baseDir, path)}`);
 
             this._mounts[path] = app;
         }
 
-        getAll () {
+        async mountRouteApp (path, routeApp) {
+
+            // TODO: Write mount socket files to the filesystem.
+
+            INF.LIB.console.info(`Mounting route app to: ${INF.LIB.PATH.join(this._baseDir, path)}`);
+
+            this._apps[path] = routeApp;            
+        }
+
+        getAllMounts () {
             return this._mounts;
         }
 
-        getAllForPrefix (prefix) {
+        getAllApps () {
+            return this._apps;
+        }
+
+        getMountsForPrefix (prefix) {
             const self = this;
             const mounts = {};
             Object.keys(self._mounts).forEach(function (path) {
                 if (path.indexOf(prefix) === 0) {
                     mounts[path.substring(prefix.length)] = self._mounts[path];
+                }
+            });
+            return mounts;
+        }
+
+        getAppsForPrefix (prefix) {
+            const self = this;
+            const mounts = {};
+// console.log("prefix", prefix);
+// console.log("self._apps", self._apps);            
+            
+            Object.keys(self._apps).forEach(function (path) {
+                if (path.indexOf(prefix) === 0) {
+                    mounts[path.substring(prefix.length)] = self._apps[path];
                 }
             });
             return mounts;
@@ -226,9 +297,9 @@ exports.inf = async function (INF, NS) {
             method: method
         };
         if (path) {
-            if (options.callerNamespace.anchorPrefix) {
-                path = INF.LIB.PATH.join(options.callerNamespace.anchorPrefix.toString(), path);
-            }
+            // if (options.callerNamespace.anchorPrefix) {
+            //     path = INF.LIB.PATH.join(options.callerNamespace.anchorPrefix.toString(), path);
+            // }
             context.mount = {
                 path: path
             };
@@ -237,17 +308,48 @@ exports.inf = async function (INF, NS) {
         return context;
     }
 
+    const infAPI = {
+        mounts: mounts
+    };
+
     return {
 
         watch: async function () {
+            // TODO: Fire on all workspaces.
             workspaceEvents.emit("watch");
         },
 
         unwatch: async function () {
+            // TODO: Fire on all workspaces.
             workspaceEvents.emit("unwatch");
         },
 
         invoke: async function (pointer, value, options) {
+
+            if (pointer === 'waitForAnyKey()') {
+                const INQUIRER = require("inquirer");
+
+                await INQUIRER.prompt([
+                    {
+                        type: 'input',
+                        name: 'question',
+                        message: `Press any key to exit dev server.\n`
+                    }
+                ]);
+
+                return true;
+            }
+
+            if (/^onOption\(\)\s/.test(pointer)) {
+
+                const optionName = pointer.match(/^onOption\(\)\s(.+)$/)[1];
+
+                if (INF.options[optionName]) {
+                    await INF.load(value);
+                }
+
+                return true;
+            }
 
             let m = null;
 
@@ -293,7 +395,8 @@ exports.inf = async function (INF, NS) {
 
 //console.log("pointer", pointer, value);
 
-            m = pointer.match(/^(set|write|ensure|mount|run)\(\)(?:\s(.+))?$/);
+            m = pointer.match(/^(set|write|ensure|mount|run)\(\)(?:\s(.*))?$/);
+
             if (m) {
 
                 if (m[1] === 'ensure') {
@@ -308,7 +411,7 @@ exports.inf = async function (INF, NS) {
                         }
                     };
 
-                    return true;
+                    return infAPI;
                 } else
                 if (m[1] === 'set') {
 
@@ -319,11 +422,17 @@ exports.inf = async function (INF, NS) {
                         fs: fs
                     });
 
-                    return true;
+                    return infAPI;
                 } else
                 if (m[1] === 'write') {
 
+// console.error("m[2]", m[2]);
+                    
                     const callerContext = makeCallerContext(m[1], m[2], value, options);
+
+//console.error("[core][write] callerContext", callerContext)                                    
+
+                    let invocationContext = null;
 
                     let output = value.value;
                     if (typeof output === 'function') {    
@@ -333,28 +442,58 @@ exports.inf = async function (INF, NS) {
                             output = undefined;
                         } else {
 
+                            invocationContext = output.invocationContext;
+
                             output = output.value;
 
-                            if (
-                                output === undefined ||
-                                output === null ||
-                                typeof output === 'boolean'
-                            ) {
-                                throw new Error(`Invalid tool 'output'!`);
-                            }
+                            // if (
+                            //     output === undefined ||
+                            //     output === null ||
+                            //     typeof output === 'boolean'
+                            // ) {
+                            //     throw new Error(`Invalid tool 'output'!`);
+                            // }
                         }
                     }
 
-                    if (output !== undefined) {
+                    if (!invocationContext) {
+                        console.error("pointer:", pointer);
+                        console.error("value:", value);
+                        console.error("callerContext:", callerContext);
+                        throw new Error(`No 'invocationContext' available.`);
+                    }
+                    if (!callerContext.mount.path) {
+                        throw new Error(`No 'callerContext.mount.path' available.`);
+                    }
+                    const distPath = INF.LIB.PATH.relative(invocationContext.pwd, INF.LIB.PATH.join(invocationContext.dirs.dist, callerContext.mount.path));
 
+                    if (
+                        output !== undefined &&
+                        output !== null &&
+                        typeof output !== 'boolean'
+                    ) {
+
+                        if (INF.LIB.CODEBLOCK.isCodeblock(output)) {
+
+                            output = await INF.LIB.CODEBLOCK.runAsync(output, {
+                                LIB: INF.LIB,
+                                '___PWD___': INF.options.cwd
+                            });
+
+                            await fs.writeFile(distPath, output);
+
+                        } else
                         // Check if we have a ValueProvider that may update the value
                         if (typeof output.getValue === 'function') {
 
-                            await fs.writeFile(callerContext.mount.path, output.getValue());
+                            const val = output.getValue();
+                            if (val !== undefined) {
+                                await fs.writeFile(distPath, val);
+                            }
 
                             if (typeof output.on === 'function') {
                                 output.on('value.changed', function () {
-                                    fs.writeFile(callerContext.mount.path, output.getValue());
+                                    fs.writeFile(distPath, output.getValue());
                                 });
                             }
 
@@ -363,38 +502,52 @@ exports.inf = async function (INF, NS) {
                             typeof output === 'string' ||
                             Buffer.isBuffer(output)
                         ) {
-                            await fs.writeFile(callerContext.mount.path, output);
+                            await fs.writeFile(distPath, output);
                         } else {
-                            await fs.writeStream(callerContext.mount.path, output);
+                            await fs.writeStream(distPath, output);
                         }
                     }
 
                     if (process.env.PINF_IT_TEST_VERBOSE) {
-                        console.log(`[gi0-PINF-it] ${m[1]}():`, NS, pointer, callerContext.mount.path, output);
+                        console.log(`[gi0-PINF-it] ${m[1]}():`, NS, pointer, distPath, output);
 
                         return {
                             event: `[gi0-PINF-it] ${m[1]}():`,
                             NS: NS,
                             pointer: pointer,
-                            path: callerContext.mount.path,
+                            path: distPath,
                             value: output
                         };                        
                     }
 
-                    return true;
+                    return infAPI;
                 } else
                 if (m[1] === 'mount') {
 
                     const callerContext = makeCallerContext(m[1], m[2], value, options);
 
-                    let app = value.value;
-                    if (typeof app === 'function') {    
-                        app = (await app(callerContext)).value;
+                    if (typeof value.value !== 'function') {    
+                        throw new Error(`'value' for mount() must be a function!`);
                     }
 
-                    await mounts.mount(callerContext.mount.path, app);
+// console.error("[core][mount] callerContext", callerContext)                                    
 
-                    return true;
+                    const handlers = (await value.value(callerContext));
+
+                    const invocationContext = handlers.invocationContext;
+
+//console.log('[CORE] Mount at:', INF.LIB.PATH.relative(invocationContext.pwd, INF.LIB.PATH.join(invocationContext.dirs.dist, (callerContext.mount && callerContext.mount.path) || '')));
+
+                    const mountPrefix = '/' + INF.LIB.PATH.relative(invocationContext.pwd, INF.LIB.PATH.join(invocationContext.dirs.dist, (callerContext.mount && callerContext.mount.path) || ''));
+
+                    if (handlers.value) {
+                        await mounts.mount(mountPrefix, handlers.value);
+                    }
+                    if (handlers.routeApp) {
+                        await mounts.mountRouteApp(mountPrefix, handlers.routeApp);
+                    }
+
+                    return infAPI;
                 } else
                 if (m[1] === 'run') {
 
@@ -413,7 +566,7 @@ exports.inf = async function (INF, NS) {
                         throw new Error(`TODO: Expect 'mount.path' to be set and write result to fs.`);
                     }
 
-                    return true;
+                    return infAPI;
                 }
             }
         }

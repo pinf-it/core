@@ -2,6 +2,7 @@
 
 
 console.log(">>>TEST_IGNORE_LINE:✓<<<");
+console.log(">>>TEST_IGNORE_LINE:^Duration:<<<");
 
 process.env.PINF_IT_TEST_VERBOSE = "1";
 
@@ -448,53 +449,177 @@ describe('core', function () {
 
         this.timeout(5 * 1000);
 
-        it('Resolve uris against own directory', async function () {
-            let result = await PINF_IT({
-                cwd: __dirname
-            }).runDoc(`{
-                "#": "01-ShebangDirInf/#!/gi0-PINF-it/#!",
+        describe('runDoc()', function () {
 
-                "#": {
-                    "/._dist/our-builder": "01-ShebangDirInf/#!/builder.com/#!"
-                },
-            
-                ":my-builder:": "/._dist/our-builder @ builder/v0",
-            
-                "gi0-PINF-it @ # :my-builder: write() /._dist/browser.js": "Hello World (builder)"
-            }`);
+            it('Resolve uris against own directory', async function () {
 
-            ASSERT.deepEqual(Object.keys(result), [
-                "/._dist/our-builder|gi0-PINF-it",
-                "gi0-PINF-it"
-            ]);
+                let result = await PINF_IT({
+                    cwd: __dirname
+                }).runDoc(`{
+                    "#": "01-ShebangDirInf/#!/gi0-PINF-it/#!",
+
+                    "#": {
+                        "/._dist/our-builder": "01-ShebangDirInf/#!/builder.com/#!"
+                    },
+                
+                    ":my-builder:": "/._dist/our-builder @ builder/v0",
+                
+                    "gi0-PINF-it @ # :my-builder: write() /._dist/browser.js": "Hello World (builder)"
+                }`);
+
+                ASSERT.deepEqual(Object.keys(result), [
+                    "/._dist/our-builder|gi0-PINF-it",
+                    "gi0-PINF-it"
+                ]);
+            });
+
+            it('Resolve uris against parent directories', async function () {
+
+                const subDir = PATH.join(__dirname, '.~subDir');
+
+                if (!(await FS.existsAsync(subDir))) {
+                    await FS.mkdirAsync(subDir);
+                }
+
+                let result = await PINF_IT({
+                    cwd: subDir
+                }).runDoc(`{
+                    "#": "01-ShebangDirInf/#!/gi0-PINF-it",
+
+                    "#": {
+                        "/._dist/our-builder": "01-ShebangDirInf/#!/builder.com"
+                    },
+                
+                    ":my-builder:": "/._dist/our-builder @ builder/v0",
+                
+                    "gi0-PINF-it @ # :my-builder: write() /._dist/browser.js": "Hello World (builder)"
+                }`);
+
+                ASSERT.deepEqual(Object.keys(result), [
+                    "/._dist/our-builder|gi0-PINF-it",
+                    "gi0-PINF-it"
+                ]);
+            });
         });
 
-        it('Resolve uris against parent directories', async function () {
+        // DEPRECATED
+        it('runTool()', async function () {
 
-            const subDir = PATH.join(__dirname, '.~subDir');
+            async function run () {
 
-            if (!(await FS.existsAsync(subDir))) {
-                await FS.mkdirAsync(subDir);
+                const resultPath = await PINF_IT({
+                    cwd: __dirname
+                }).runTool('gi0.PINF.it/core/tests/03-ExternalAPI # builder/v0', {
+                    foo: 'bar'
+                });
+
+                const result = await LIB.FS.readFile(resultPath, 'utf8');
+
+                ASSERT.equal(result, 'Value: {"foo":"bar"}');
             }
 
-            let result = await PINF_IT({
-                cwd: subDir
-            }).runDoc(`{
-                "#": "01-ShebangDirInf/#!/gi0-PINF-it",
+            await run();
 
-                "#": {
-                    "/._dist/our-builder": "01-ShebangDirInf/#!/builder.com"
+            const startTime = Date.now();
+            await run();
+            const endTime = Date.now();
+
+            console.log('Duration:', (endTime - startTime), 'ms');
+        });
+
+        // DEPRECATED
+        it('getRouteApp()', async function () {
+
+            async function run () {
+
+                const app = await PINF_IT({
+                    cwd: __dirname
+                }).getRouteApp('gi0.PINF.it/core/tests/03-ExternalAPI # router/v0');
+
+                const route = await app({
+                    foo: 'bar'
+                });
+
+                await new Promise(function (resolve) {
+                    route(null, null, function (info) {
+
+                        ASSERT.deepEqual(info, {
+                            foo: 'bar'
+                        });
+
+                        resolve();
+                    });
+                });
+            }
+
+            await run();
+
+            const startTime = Date.now();
+            await run();
+            const endTime = Date.now();
+
+            console.log('Duration:', (endTime - startTime), 'ms');
+        });
+
+        it('runToolForModel()', async function () {
+
+            async function run () {
+
+                const path = await PINF_IT({
+                    cwd: __dirname
+                }).runToolForModel(
+                    'gi0.PINF.it/build/v0',
+                    '/.dist',
+                    '/path.txt',
+                    'gi0.PINF.it/core/tests/03-ExternalAPI # builder/v1', {
+                        foo: 'bar',
+                        func: function /* CodeBlock */ (args) {
+                            return args;
+                        }
+                    },
+                    [
+                        'path'
+                    ]
+                );
+
+                const result = await LIB.FS.readFile(path, 'utf8');
+
+                ASSERT.equal(result, 'Value: {"foo":"bar","func":{".@":"github.com~0ink~codeblock/codeblock:Codeblock","_code":"return args;","_format":"javascript","_args":["args"],"_compiled":false}}');
+            }
+
+            await run();
+
+            const startTime = Date.now();
+            await run();
+            const endTime = Date.now();
+
+            console.log('Duration:', (endTime - startTime), 'ms');
+
+
+            const router = await PINF_IT({
+                cwd: __dirname
+            }).runToolForModel(
+                'gi0.PINF.it/build/v0',
+                '/.dist',
+                '/path.txt',
+                'gi0.PINF.it/core/tests/03-ExternalAPI # builder/v1', {
+                    foo: 'bar',
+                    func: function /* CodeBlock */ (args) {
+                        return args;
+                    }
                 },
-            
-                ":my-builder:": "/._dist/our-builder @ builder/v0",
-            
-                "gi0-PINF-it @ # :my-builder: write() /._dist/browser.js": "Hello World (builder)"
-            }`);
+                [
+                    'router'
+                ]
+            );
 
-            ASSERT.deepEqual(Object.keys(result), [
-                "/._dist/our-builder|gi0-PINF-it",
-                "gi0-PINF-it"
-            ]);
+            let body = null;
+            router(null, {
+                end: function (_body) {
+                    body = _body;
+                }
+            });
+            ASSERT.equal(body, 'Value: {"foo":"bar","func":{".@":"github.com~0ink~codeblock/codeblock:Codeblock","_code":"return args;","_format":"javascript","_args":["args"],"_compiled":false}}');
         });
 
     });

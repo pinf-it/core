@@ -1,0 +1,45 @@
+#!/usr/bin/env inf
+{
+    "#": "gi0.PINF.it/core/v0",
+
+    "#": {
+        "/.tmp/builder1": "builder.com",
+        "/.tmp/wrapper": "wrapper.com"
+    },
+
+    ":builder1:": "/.tmp/builder1 @ builder/v0",
+    ":wrapper:": "/.tmp/wrapper @ wrapper/v0",
+
+    "gi0.PINF.it/build/v0 @ # /": (inf () >>>
+        {
+            "gi0.PINF.it/build/v0 @ # :builder1: build() /.tmp/script01.js": "console.log('[builder] Hello World - 01 - builder: %homePath%');\n",
+            "gi0.PINF.it/build/v0 @ # :wrapper: build() /.tmp/script03.js": "console.log('[wrapper] Hello World - 03 - wrapper: %homePath%');\n"
+        }
+    <<<),
+
+    "gi0.PINF.it/build/v0 @ # onDone()": (inf () >>>
+        {
+            "# run": (run.bash.progress () >>>
+
+                echo "--- check build result ---"
+
+                echo "---"
+                find .tmp -type f
+                echo "---"
+                find .tmp -type f -exec cat {} +
+                echo "---"
+
+                echo "--- remove partial build result ---"
+                # Remove file that will be rebuilt.
+                rm ".tmp/script01.js"
+
+                sleep 1
+
+                echo "--- shutting down ---"
+
+            <<<),
+
+            "gi0.PINF.it/build/v0 @ # unwatch()": ""    
+        }
+    <<<)
+}

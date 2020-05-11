@@ -8,5 +8,5 @@
 
     ":readme:": "/._dist/readme @ generator/v0",
 
-    "gi0.PINF.it/core/v0 @ # :readme: write() /._dist/README.md": "My project readme!"
+    "gi0.PINF.it/core/v0 @ # :readme: write() /._dist/README.md": "My project2 readme!"
 }

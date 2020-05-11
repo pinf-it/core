@@ -1,0 +1,19 @@
+>>>TEST_IGNORE_LINE:\[pinf.it\].+Writing to:<<<
+---
+.tmp/script01.js
+.tmp/builder/common-builder-resource.txt
+.tmp/builder/builder-wrapped/common-wrapper-script01.js
+.tmp/builder/builder-wrapped/sub-wrapper/common-wrapper-script02.js
+.tmp/builder/builder-wrapped/common-wrapper-resource.txt
+.tmp/builder/builder-sub/common-builder-script02.js
+.tmp/builder/common-builder-script01.js
+.tmp/builder/common-builder-script03.js
+---
+console.log('[builder] Hello World - 01 - builder: TeStLoCaLiZeD/.tmp/builder');
+Hello World - Common Builder - TeStLoCaLiZeD/.tmp/builder
+console.log('[builder] Hello World - Wrapper - 01 - TeStLoCaLiZeD/.tmp/builder');
+console.log('[builder] Hello World - Wrapper - 02 - TeStLoCaLiZeD/.tmp/builder');
+Hello World - Common Wrapper - TeStLoCaLiZeD/.tmp/builder/builder-wrapped
+console.log('[builder] Hello World - Builder - 02 - TeStLoCaLiZeD/.tmp/builder');
+console.log('[builder] Hello World - Builder - 01 - TeStLoCaLiZeD/.tmp/builder');
+console.log('[wrapper] Hello World - Builder - 03 - TeStLoCaLiZeD/.tmp/builder/builder-wrapped');

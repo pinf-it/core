@@ -1,0 +1,83 @@
+>>>TEST_IGNORE_LINE:\[pinf.it\].+Writing to:<<<
+---
+console.log('[TRANSFORM:1] Hello World - 01');
+console.log('[TRANSFORM:1] Hello World - 02');
+console.log('[TRANSFORM:1] Hello World - 03');
+console.log('[TRANSFORM:1] Hello World - 04');
+console.log('[TRANSFORM:1] Hello World - 05');
+console.log('[TRANSFORM:1] Hello World - 06');
+console.log('[ISSUE:2] [TRANSFORM:3] Hello World - 11');
+console.log('[ISSUE:2] [TRANSFORM:3] Hello World - 12');
+console.log('[ISSUE:2] [TRANSFORM:3] Hello World - 13');
+console.log('[ISSUE:2] [TRANSFORM:3] Hello World - 14');
+console.log('[ISSUE:2] [TRANSFORM:3] Hello World - 15');
+console.log('[ISSUE:2] [TRANSFORM:3] Hello World - 16');
+---
+console.log('[TRANSFORM:1] Hello World - 01');
+console.log('[TRANSFORM:1] Hello World - 02');
+console.log('[TRANSFORM:1] Hello World - 03');
+console.log('[TRANSFORM:1] Hello World - 04');
+console.log('[TRANSFORM:1] Hello World - 05');
+console.log('[TRANSFORM:1] Hello World - 06');
+console.log('[ISSUE:2] [TRANSFORM:3] Hello World - 11');
+console.log('[ISSUE:2] [TRANSFORM:3] Hello World - 12');
+console.log('[ISSUE:2] [TRANSFORM:3] Hello World - 13');
+console.log('[ISSUE:2] [TRANSFORM:3] Hello World - 14');
+console.log('[ISSUE:2] [TRANSFORM:3] Hello World - 15');
+console.log('[ISSUE:2] [TRANSFORM:3] Hello World - 16');
+---
+---
+console.log('[TRANSFORM:1] Hello World - 01');
+console.log('[TRANSFORM:1] Hello World - 02');
+console.log('[TRANSFORM:1] Hello World - 03');
+console.log('[TRANSFORM:1] Hello World - 04');
+console.log('[TRANSFORM:1] Hello World - 05');
+console.log('[TRANSFORM:1] Hello World - 06');
+console.log('[ISSUE:2] [TRANSFORM:3] Hello World - 11');
+console.log('[ISSUE:2] [TRANSFORM:3] Hello World - 12');
+console.log('[ISSUE:2] [TRANSFORM:3] Hello World - 13');
+console.log('[ISSUE:2] [TRANSFORM:3] Hello World - 14');
+console.log('[ISSUE:2] [TRANSFORM:3] Hello World - 15');
+console.log('[ISSUE:2] [TRANSFORM:3] Hello World - 16');
+[34m[1m[pinf.it][22m[39m [34m[1mPath changed: TeStLoCaLiZeD/#!/builder.com/builder.inf.js[22m[39m
+---
+console.log('[TRANSFORM:1] Hello World - 01');
+console.log('[TRANSFORM:1] Hello World - 02');
+console.log('[TRANSFORM:1] Hello World - 03');
+console.log('[TRANSFORM:1] Hello World - 04');
+console.log('[TRANSFORM:1] Hello World - 05');
+console.log('[TRANSFORM:1] Hello World - 06');
+console.log('[ISSUE:3] [TRANSFORM:4] Hello World - 11');
+console.log('[ISSUE:3] [TRANSFORM:4] Hello World - 12');
+console.log('[ISSUE:3] [TRANSFORM:4] Hello World - 13');
+console.log('[ISSUE:3] [TRANSFORM:4] Hello World - 14');
+console.log('[ISSUE:3] [TRANSFORM:4] Hello World - 15');
+console.log('[ISSUE:3] [TRANSFORM:4] Hello World - 16');
+---
+---
+console.log('[TRANSFORM:1] Hello World - 01');
+console.log('[TRANSFORM:1] Hello World - 02');
+console.log('[TRANSFORM:1] Hello World - 03');
+console.log('[TRANSFORM:1] Hello World - 04');
+console.log('[TRANSFORM:1] Hello World - 05');
+console.log('[TRANSFORM:1] Hello World - 06');
+console.log('[ISSUE:2] [TRANSFORM:3] Hello World - 11');
+console.log('[ISSUE:2] [TRANSFORM:3] Hello World - 12');
+console.log('[ISSUE:2] [TRANSFORM:3] Hello World - 13');
+console.log('[ISSUE:2] [TRANSFORM:3] Hello World - 14');
+console.log('[ISSUE:2] [TRANSFORM:3] Hello World - 15');
+console.log('[ISSUE:2] [TRANSFORM:3] Hello World - 16');
+[34m[1m[pinf.it][22m[39m [34m[1mPath changed: TeStLoCaLiZeD/#!/builder.com/builder.inf.js[22m[39m
+---
+console.log('[TRANSFORM:1] Hello World - 01');
+console.log('[TRANSFORM:1] Hello World - 02');
+console.log('[TRANSFORM:1] Hello World - 03');
+console.log('[TRANSFORM:1] Hello World - 04');
+console.log('[TRANSFORM:1] Hello World - 05');
+console.log('[TRANSFORM:1] Hello World - 06');
+console.log('[ISSUE:3] [TRANSFORM:4] Hello World - 11');
+console.log('[ISSUE:3] [TRANSFORM:4] Hello World - 12');
+console.log('[ISSUE:3] [TRANSFORM:4] Hello World - 13');
+console.log('[ISSUE:3] [TRANSFORM:4] Hello World - 14');
+console.log('[ISSUE:3] [TRANSFORM:4] Hello World - 15');
+console.log('[ISSUE:3] [TRANSFORM:4] Hello World - 16');

@@ -1,0 +1,11 @@
+>>>TEST_IGNORE_LINE:\[pinf.it\].+Writing to:<<<
+---
+.tmp/builder1/common-builder-resource.txt
+.tmp/builder1/builder-sub/common-builder-script02.js
+.tmp/builder1/common-builder-script01.js
+.tmp/script01.js
+---
+Hello World - Common Builder - TeStLoCaLiZeD/.tmp/builder1
+console.log('[builder] Hello World - Builder - 02 - TeStLoCaLiZeD/.tmp/builder1');
+console.log('[builder] Hello World - Builder - 01 - TeStLoCaLiZeD/.tmp/builder1');
+console.log('[builder] Hello World - 01 - builder: TeStLoCaLiZeD/.tmp/builder1');

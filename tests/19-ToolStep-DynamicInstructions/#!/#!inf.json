@@ -1,0 +1,16 @@
+#!/usr/bin/env inf
+{
+    "#": "gi0.PINF.it/core/v0",
+
+    "#": {
+        "/.tmp/builder1": "builder.com"
+    },
+
+    ":builder1:": "/.tmp/builder1 @ builder/v0",
+
+    "gi0.PINF.it/build/v0 @ # /": (inf () >>>
+        {
+            "gi0.PINF.it/build/v0 @ # :builder1: build() /.tmp/script01.js": "console.log('[builder] Hello World - 01 - builder: %homePath%');\n"
+        }
+    <<<)
+}

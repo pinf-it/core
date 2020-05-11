@@ -1,0 +1,5 @@
+{
+    "router/v0 #": "${__DIRNAME__}/router.",
+    "builder/v0 #": "${__DIRNAME__}/builder.",
+    "builder/v1 #": "${__DIRNAME__}/builder1."
+}

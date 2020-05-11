@@ -1,4 +1,5 @@
 >>>TEST_IGNORE_LINE:\d+\spassing\s\([^\)]+\)<<<
+>>>TEST_IGNORE_LINE:^Duration:<<<
 
 
   core
@@ -11,9 +12,20 @@
         "builder.com/foo/bar"
     ]
 }
+[builder.com] inf(): my-builder
 [builder.com] interface(): my-builder
 [gi0-PINF-it] write(): gi0-PINF-it write() /._dist/browser.js /._dist/browser.js HELLO WORLD (BUILDER) (built)
     Api: Features
+[34m[1m[pinf.it][22m[39m [34m[1mWriting to: TeStLoCaLiZeD/.~/gi0.PINF.it/core/runTool/gi0.PINF.it~core~tests~03-ExternalAPI~builder~v0~ce7ec846dccb6392cd7c796fe06cbf4de8884a54[22m[39m
+[gi0-PINF-it] write(): gi0.PINF.it/core/v0 write() /.~/gi0.PINF.it/core/runTool/gi0.PINF.it~core~tests~03-ExternalAPI~builder~v0~ce7ec846dccb6392cd7c796fe06cbf4de8884a54 .~/gi0.PINF.it/core/runTool/gi0.PINF.it~core~tests~03-ExternalAPI~builder~v0~ce7ec846dccb6392cd7c796fe06cbf4de8884a54 Value: {"foo":"bar"}
+[34m[1m[pinf.it][22m[39m [34m[1mWriting to: TeStLoCaLiZeD/.~/gi0.PINF.it/core/runTool/gi0.PINF.it~core~tests~03-ExternalAPI~builder~v0~ce7ec846dccb6392cd7c796fe06cbf4de8884a54[22m[39m
+[gi0-PINF-it] write(): gi0.PINF.it/core/v0 write() /.~/gi0.PINF.it/core/runTool/gi0.PINF.it~core~tests~03-ExternalAPI~builder~v0~ce7ec846dccb6392cd7c796fe06cbf4de8884a54 .~/gi0.PINF.it/core/runTool/gi0.PINF.it~core~tests~03-ExternalAPI~builder~v0~ce7ec846dccb6392cd7c796fe06cbf4de8884a54 Value: {"foo":"bar"}
+[34m[1m[pinf.it][22m[39m [34m[1mMounting route app to: TeStLoCaLiZeD/[22m[39m
+[34m[1m[pinf.it][22m[39m [34m[1mMounting route app to: TeStLoCaLiZeD/[22m[39m
+[34m[1m[pinf.it][gi0.PINF.it/builder/v1][22m[39m [34m[1mWriting to:[22m[39m [34m[1mTeStLoCaLiZeD/.dist/path.txt[22m[39m
+[34m[1m[pinf.it][gi0.PINF.it/builder/v1][22m[39m [34m[1mWriting to:[22m[39m [34m[1mTeStLoCaLiZeD/.dist/path.txt[22m[39m
+[34m[1m[pinf.it][gi0.PINF.it/builder/v1][22m[39m [34m[1mWriting to:[22m[39m [34m[1mTeStLoCaLiZeD/.dist/path.txt[22m[39m
+      runDoc()
 [builder.com] inf(): builder/v0
 [gi0-PINF-it] register(): gi0-PINF-it {
     "canonical": "builder.com/builder/v0",
@@ -21,6 +33,7 @@
         "builder.com/foo/bar"
     ]
 }
+[builder.com] inf(): my-builder
 [builder.com] interface(): my-builder
 [gi0-PINF-it] write(): gi0-PINF-it write() /._dist/browser.js /._dist/browser.js HELLO WORLD (BUILDER) (built)
 [builder.com] inf(): builder/v0
@@ -30,6 +43,7 @@
         "builder.com/foo/bar"
     ]
 }
+[builder.com] inf(): my-builder
 [builder.com] interface(): my-builder
 [gi0-PINF-it] write(): gi0-PINF-it write() /._dist/browser.js /._dist/browser.js HELLO WORLD (BUILDER) (built)
 

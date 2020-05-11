@@ -1,0 +1,10 @@
+{
+    "transform/v0 #": "${__DIRNAME__}/builder.",
+    "reissue/v0 #": "${__DIRNAME__}/builder.",
+    "start_string/v0 #": "${__DIRNAME__}/builder.",
+    "start_buffer/v0 #": "${__DIRNAME__}/builder.",
+    "start_stream/v0 #": "${__DIRNAME__}/builder.",
+    "start_value_provider_string/v0 #": "${__DIRNAME__}/builder.",
+    "start_value_provider_buffer/v0 #": "${__DIRNAME__}/builder.",
+    "start_value_provider_stream/v0 #": "${__DIRNAME__}/builder."
+}

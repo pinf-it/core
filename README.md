@@ -124,3 +124,5 @@ TODO
   * Add test for `write()` fed by JavaScript codeblock.
   * Add test for chained tools.
 
+  * Document entities: Tool, Step, Resources, Resource, File, Url, Cache, Component, Registry, Dependencies, Dependency, Root, Node, Leaf, Tree
+

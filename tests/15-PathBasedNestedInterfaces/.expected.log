@@ -1,0 +1,4 @@
+>>>TEST_IGNORE_LINE:\[pinf.it\].+Writing to:<<<
+---
+console.log('[TRANSFORM:1] Hello World - 02');
+console.log('[TRANSFORM:1] Hello World - 01');

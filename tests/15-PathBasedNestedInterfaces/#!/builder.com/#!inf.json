@@ -1,0 +1,13 @@
+{
+    "transform/v0 #": "${__DIRNAME__}/builder.",
+    "start_string/v0 #": "${__DIRNAME__}/builder.",
+
+    "#": {
+        "/sub/builder": "builder1.com"
+    },
+
+    ":transform:": "/sub/builder @ transform/v0",
+    ":start_string:": "/sub/builder @ start_string/v0",
+
+    "gi0.PINF.it/core/v0 @ # :start_string: :transform: write() /sub_script/script02.js": "console.log('Hello World - 02');\n"
+}

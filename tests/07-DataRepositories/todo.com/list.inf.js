@@ -32,7 +32,7 @@ exports['gi0.pinf.it/core/v0/tool'] = async function (workspace) {
             ASSERT.equal(typeof invocation['dirs'], 'object');
             ASSERT.equal(invocation['method'], 'write');
             ASSERT.deepEqual(Object.keys(invocation['declaration']), ['line', 'column', 'pos', 'file']);
-            ASSERT.equal(invocation['cwd'].indexOf(PATH.dirname(__dirname)) > -1, true);
+            ASSERT.equal(invocation['pwd'].indexOf(PATH.dirname(__dirname)) > -1, true);
 
             return {
                 value: invocation.value.join(", ")

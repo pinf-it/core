@@ -36,11 +36,11 @@ exports['gi0.pinf.it/core/v0/tool'] = async function (workspace) {
             ASSERT.equal(typeof invocation['dirs'], 'object');
             ASSERT.equal(invocation['method'], 'write');
             ASSERT.deepEqual(Object.keys(invocation['declaration']), ['line', 'column', 'pos', 'file']);
-            ASSERT.equal(invocation['cwd'].indexOf(PATH.dirname(__dirname)) > -1, true);
+            ASSERT.equal(invocation['pwd'].indexOf(PATH.dirname(__dirname)) > -1, true);
             ASSERT.equal(invocation['value'].replace(/\d$/, ''), './config.json ~ message');
 
             const invocationParts = invocation.value.match(/^([^~]+) ~ ([^~]+)$/);
-            const path = PATH.join(invocation.cwd, invocationParts[1]);
+            const path = PATH.join(invocation.pwd, invocationParts[1]);
             const config = JSON.parse(await FS.readFile(path, 'utf8'));
 
             return {

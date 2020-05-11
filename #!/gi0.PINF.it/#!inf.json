@@ -1,8 +1,12 @@
 {
+    "//": "TODO: Remove FS logic from core and only provide minimal context. Move FS logic into gi0.PINF.it/fs/v0",
     "gi0.PINF.it/core/v0 @": "gi0.PINF.it/core/v0",
     "gi0.PINF.it/core/v0 @ #": "./core.",
 
     "//": "gi0.pinf.it/core/v0/tool/workspace",
     "//": "gi0.pinf.it/core/v0/tool/instance",
-    "//": "gi0.pinf.it/core/v0/tool/invocation"
+    "//": "gi0.pinf.it/core/v0/tool/invocation",
+
+    "gi0.PINF.it/build/v0 @": "gi0.PINF.it/build/v0",
+    "gi0.PINF.it/build/v0 @ #": "./build."
 }

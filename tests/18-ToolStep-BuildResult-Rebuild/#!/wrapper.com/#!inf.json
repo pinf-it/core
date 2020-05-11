@@ -1,0 +1,20 @@
+{
+    "wrapper/v0 #": "${__DIRNAME__}/wrapper.",
+
+    "#": {
+        "/wrapper-builder": "builder.com"
+    },
+
+    ":builder:": "/wrapper-builder @ builder/v0",
+
+    "gi0.PINF.it/build/v0 @ # /": (inf () >>>
+        {
+            "gi0.PINF.it/build/v0 @ # :builder: build() /common-wrapper-script01.js": "console.log('[builder] Hello World - Wrapper - 01 - %homePath%');\n"
+        }
+    <<<),
+    "gi0.PINF.it/build/v0 @ # /sub-wrapper": (inf () >>>
+        {
+            "gi0.PINF.it/build/v0 @ # :builder: build() /common-wrapper-script02.js": "console.log('[builder] Hello World - Wrapper - 02 - %homePath%');\n"
+        }
+    <<<)
+}
