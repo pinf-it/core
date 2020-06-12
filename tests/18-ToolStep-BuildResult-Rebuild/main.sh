@@ -17,7 +17,7 @@ echo "---"
 find .tmp -type f -exec cat {} +
 
 
-echo "---"
+echo "--- watch ---"
 
 #pinf.it . --watch --debug --rebuild
 pinf.it . --watch --rebuild

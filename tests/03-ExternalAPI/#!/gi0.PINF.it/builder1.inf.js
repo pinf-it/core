@@ -11,6 +11,8 @@ exports['gi0.PINF.it/build/v0'] = async function (LIB, CLASSES) {
 
             await LIB.FS.outputFile(target.path, `Value: ${JSON.stringify(build.config)}`);
 
+            result.inputPaths[__filename] = true;
+
             return {
                 "path": function () {
                     return target.path;

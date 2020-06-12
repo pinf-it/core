@@ -738,6 +738,7 @@ console.error("[pinf.it][watchValues()] VALUE CHANGED!!", value.getValue());
 //console.error("INIT::", "pinf.it", namespace.interfaceClasses, namespace);
 
 
+
 //console.log("context.alias::", namespace.baseDir, context.alias, context.compAlias, '---', context.compNamespace.baseDir);
 // TODO: Get proper alias.
 
@@ -1053,7 +1054,6 @@ console.error("[pinf.it][watchValues()] VALUE CHANGED!!", value.getValue());
             }
             return null;
         }
-
 
         const libs = {};
 
@@ -1602,10 +1602,18 @@ module.exports = function (options) {
     options = options || {};
     options.cwd = options.cwd || process.cwd();
 
-    const opts = Object.create(cliRunnerArgs);
-    Object.keys(options).forEach(function (name) {
-        opts[name] = options[name];
-    });
+    const opts = options;
+    if (cliRunnerArgs) {
+        Object.keys(cliRunnerArgs).forEach(function (name) {
+            if (typeof opts[name] === 'undefined') {
+                opts[name] = cliRunnerArgs[name];
+            }
+        });
+    }
+    // const opts = Object.create(cliRunnerArgs);
+    // Object.keys(options).forEach(function (name) {
+    //     opts[name] = options[name];
+    // });
 
     if (process.env.VERBOSE || process.env.PINF_IT_VERBOSE) {
         opts.verbose = true;
@@ -1693,7 +1701,8 @@ FILEPATH: Path to *[[#!/]#!inf.json] file to execute.
             debug: args.debug || args.d || false,
             silent: args.silent || args.s || false,
             watch: args.watch || args.w || false,
-            rebuild: args.rebuild || false
+            rebuild: args.rebuild || false,
+            _: args._
         };
 
         cliRunnerArgs = runnerArgs;

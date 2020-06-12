@@ -1,17 +1,14 @@
 
-
-console.error("INIT RUNNER!");
-
-
-let firstTurnDone = null;
+let firstTurnDone = false;
 let pendingBuilds = 0;
-
+let runnerLastInstanceIndex = 0;
+let buildInvocations = {};
+let onDoneInstructions = [];
 
 exports.inf = async function (INF, NS) {
 
-    if (!firstTurnDone) {
-        firstTurnDone = INF.LIB.Promise.defer();
-    }
+    const runnerInstanceIndex = runnerLastInstanceIndex;
+    runnerLastInstanceIndex += 1;
 
     const workspaceEvents = INF.LIB.workspaceEvents;
     let trackPromise = null;
@@ -59,29 +56,30 @@ exports.inf = async function (INF, NS) {
                             ) {
                                 const size = (await INF.LIB.FS.stat(path)).size;
                                 let hash = null;
-                                // For all files we compare by size first
-                                if (
-                                    !lastModifiedSizes[path] ||
-                                    size !== lastModifiedSizes[path].size
-                                ) {
-                                    changedPathsStack.push(path);
-                                } else
                                 // For files < 250kb we compare by checksum
                                 if (size < 250 * 1000) {
                                     hash = await hashForPath(path);
-                                    if (
-                                        !lastModifiedSizes[path] ||
-                                        hash !== lastModifiedSizes[path].hash
-                                    ) {
-                                        changedPathsStack.push(path);
-                                    }
+                                }
+                                // For all files we compare by size first
+                                if (
+                                    !lastModifiedSizes[path] ||
+                                    size !== lastModifiedSizes[path].size ||
+                                    hash !== lastModifiedSizes[path].hash
+                                ) {
+                                    changedPathsStack.push({
+                                        path: path,
+                                        size: size,
+                                        hash: hash
+                                    });
                                 }
                                 lastModifiedSizes[path] = {
                                     size: size,
                                     hash: hash
                                 };
                             } else {
-                                changedPathsStack.push(path);
+                                changedPathsStack.push({
+                                    path: path
+                                });
                             }
                         }));
                         changedPathsSet = null;
@@ -105,7 +103,8 @@ exports.inf = async function (INF, NS) {
                         // We also ensure that each handler is only invoked once.
                         const matchingHandlers = [];
 
-                        changedPathsStack.forEach(function (path) {
+                        changedPathsStack.forEach(function (entry) {
+                            const path = entry.path;
                             if (self._watchHandlers[path]) {
                                 self._watchHandlers[path].forEach(function (handler) {
                                     if (matchingHandlers.indexOf(handler) === -1) {
@@ -141,9 +140,13 @@ exports.inf = async function (INF, NS) {
             self._watcher.on('raw', function (event, path, details) {
                 if (!self._watching) return;
                 if (details.type !== 'file') return;
-                changedPaths[path] = details;
-//console.log("CHANGED", path)                
-                notifyPathChanged();
+    
+                // We only start reacting to file changes after the first turn is done.
+                // TODO: Disable watcher until first turn is done.
+                // if (firstTurnDone) {
+                    changedPaths[path] = details;
+                    notifyPathChanged();
+                // }
             });
             self._watching = false;
             workspaceEvents.on("watch", function () {
@@ -188,11 +191,15 @@ exports.inf = async function (INF, NS) {
         }
         _watchPaths () {
             const self = this;
+            if (!self._watching) return;
+            if (!firstTurnDone) return;
             Object.keys(self._watchHandlers).forEach(function (path) {
                 self._watchPath(path);
             });
         }
         _watchPath (path) {
+            if (!this._watching) return;
+            if (!firstTurnDone) return;
             if (this.watchingPaths[path] !== true) {
                 INF.LIB.console.debug(`Watch path: ${path}`);
                 this._watcher.add(path);
@@ -267,7 +274,7 @@ exports.inf = async function (INF, NS) {
         }
 
         toString () {
-            return `BuildStepInstance(path:./${INF.LIB.PATH.relative(process.cwd(), this.path)})`;
+            return `BuildStepInstance(kindId:${INF.LIB.COLORS.white(this.kindId)},path:./${INF.LIB.PATH.relative(process.cwd(), this.path)})`;
         }
     }
     class BuildHome extends BuildStepInstance {
@@ -285,7 +292,7 @@ exports.inf = async function (INF, NS) {
         }
     }
     class Build {
-        constructor () {
+        constructor (options) {
             const self = this;
 
             // Path to where the build is defined.
@@ -296,10 +303,30 @@ exports.inf = async function (INF, NS) {
 
             // Build configuration.
             self.config = null;
+
+            // Resolve a path relative to the build path which is where the build is defined.
+            self.resolve = async function (uri) {
+                if (/^\//.test(uri)) {
+                    // Absolute paths always mount on the output directory.
+                    return INF.LIB.PATH.join(options.targetBasePath, uri);
+                } else
+                if (/^\./.test(uri)) {
+                    // Relative paths are resolved relative to the source location.
+                    return INF.LIB.PATH.join(self.path, uri);
+                }
+                // Aliased paths are resolved against various package system layouts.
+                const path = INF.LIB.RESOLVE.sync(uri, {
+                    basedir: self.path
+                });
+                if (!path) {
+                    throw new Error(`Could not resolve nodejs dependency uri '${uri}' from basedir '${self.path}'!`);
+                }
+                return path;
+            }
         }
 
         toString () {
-            return `Build(method:${this.method})`;
+            return `Build(method:${INF.LIB.COLORS.magenta(this.method)})`;
         }
     }
 
@@ -453,11 +480,17 @@ exports.inf = async function (INF, NS) {
 
                         buildWorkspaceFS = new FS($buildWorkspace.cwd);
 
-                        workspaceStack.push({
-                            console: LIB.console,
-                            BuildStep: self,
-                            BuildWorkspace: $buildWorkspace
-                        });
+                        if (self.onWorkspace !== BuildStep.prototype.onWorkspace) {
+
+                            INF.LIB.console.log(`Scheduling new workspace for ${$buildWorkspace.toString()}`);
+
+                            pendingBuilds += 1;
+                            workspaceStack.push({
+                                console: LIB.console,
+                                BuildStep: self,
+                                BuildWorkspace: $buildWorkspace
+                            });
+                        }
                     }
 
                     const kindId = `${context.compNamespace.anchorReference}:${context.compAlias || context.alias}`;
@@ -488,6 +521,9 @@ exports.inf = async function (INF, NS) {
                             return false;    
                         })));
 
+                        INF.LIB.console.log(`Scheduling new instance for ${$BuildStepInstance.toString()}`);
+
+                        pendingBuilds += 1;
                         instanceStack.push({
                             console: LIB.console,
                             BuildStep: self,
@@ -648,11 +684,20 @@ exports.inf = async function (INF, NS) {
                                         $BuildTarget.path = targetPath;
                                     }
 
-                                    const $build = new Build();
+                                    const $build = new Build({
+                                        targetBasePath: LIB.PATH.join.apply(LIB.PATH, [
+                                            $buildWorkspace.path
+                                        ].concat(invocationAnchorPrefixes).concat([
+                                            (invocationContext.namespace.initOptions && invocationContext.namespace.initOptions._pinf_it_targetPrefix) || ''
+                                        ])).replace(/\/$/, '')
+                                    });
                                     $build.path = value.baseDir;
                                     $build.method = pointerParts[1];
                                     $build.config = context.value;
 
+                                    INF.LIB.console.log(`Scheduling new build for ${$BuildStepInstance.toString()} instructed by ${$build.toString()}`);
+
+                                    pendingBuilds += 1;
                                     invocationStack.push({
                                         console: LIB.console,
                                         BuildStep: self,
@@ -714,15 +759,12 @@ exports.inf = async function (INF, NS) {
             buildWorkspaceFS._baseDir, '.~',
             NS.replace(/\//g, '~'),
             buildResult.kindId.replace(/\//g, '~'),
-            `${buildResult.path.replace(/\//g, '~')}~${INF.options.contextId}~build.result.json`
+            `${buildResult.path.replace(/\//g, '~')}~${INF.options.contextId || 'default'}~build.result.json`
         );
     }
 
-    let buildInvocations = {};
-
     async function monitorBuildResult (buildResult) {
         monitorBuildResult._handlers = monitorBuildResult._handlers || {};
-
 
         const reportBasePath = INF.LIB.PATH.join($buildWorkspace.path, '.~', NS.replace(/\//g, '~'));
         const metaPath = makeReportPathForResult(buildResult);
@@ -748,7 +790,7 @@ exports.inf = async function (INF, NS) {
                     }
 
                     INF.LIB.console.info(`Trigger rebuild() for ${buildResult}`);
-                    INF.LIB.console.debug(`buildResult.on.rebuild.toString():`, buildResult.on.rebuild.toString());
+                    // INF.LIB.console.debug(`buildResult.on.rebuild.toString():`, buildResult.on.rebuild.toString());
                     
                     try {
 
@@ -804,6 +846,20 @@ exports.inf = async function (INF, NS) {
             // Everything is in sync now so the result is complete.
             buildResult.complete = true;
         }
+
+        // Allows API user to track which paths are used.
+        if (INF.options.registries) {
+            [
+                'inputPaths',
+                'outputPaths'
+            ].forEach(function (propertyName) {
+                if (INF.options.registries[propertyName]) {
+                    Object.keys(buildResult[propertyName]).forEach(function (path) {
+                        INF.options.registries[propertyName][path] = buildResult[propertyName][path];
+                    });
+                }
+            });
+        }
     }
 
     let workspaceStack = [];
@@ -813,27 +869,20 @@ exports.inf = async function (INF, NS) {
     const homeByKind = {};
 
     const exportedAPI = {};
-    const onDoneInstructions = [];
-
 
 
     let invocationIndex = 0;
-//    let modelProcessingDeferred = INF.LIB.Promise.defer();
-    INF.registerOnProcessingDoneHandler(async function (reason) {
+    const onProcessingDoneHandler = async function (reason, options) {
 
         if (reason) {
             // processing done after loading more instructions.
             return;
         }
 
+        options = options || {};
+
         invocationIndex += 1;
-
         const ourInvocationIndex = invocationIndex;
-
-        if (!workspaceStack.length) {
-            // The 'build' model was never used.
-            return;
-        }
 
         // ##################################################
         // # The instruction processing phase has completed
@@ -849,124 +898,153 @@ exports.inf = async function (INF, NS) {
 
         INF.LIB.console.log(`Processing done. Executing model.`);
 
+        const ourOnDoneInstructions = onDoneInstructions;
+        onDoneInstructions = [];
+
         async function executeModel () {
 
             const stacks = {};
 
             stacks.instanceStack = instanceStack;
             instanceStack = [];
-            // Go through all instances and determine the closest to the top
-            // of the tree for each different kind. These are the 'home' instances.
-            stacks.instanceStack.forEach(function (instance) {
-                const kindId = instance.BuildStepInstance.kindId;
-                if (
-                    !homeByKind[kindId] ||
-                    homeByKind[kindId].BuildStepInstance.path.substring(0, instance.BuildStepInstance.path.length) === instance.BuildStepInstance.path
-                ) {
-                    homeByKind[kindId] = instance;
-                }
-            });
-            Object.keys(homeByKind).forEach(function (kindId) {
-                homeStack.push(homeByKind[kindId]);
-            });
+
+            if (options.buildOnly !== true) {
+                // Go through all instances and determine the closest to the top
+                // of the tree for each different kind. These are the 'home' instances.
+                stacks.instanceStack.forEach(function (instance) {
+                    const kindId = instance.BuildStepInstance.kindId;
+                    if (
+                        !homeByKind[kindId] ||
+                        homeByKind[kindId].BuildStepInstance.path.substring(0, instance.BuildStepInstance.path.length) === instance.BuildStepInstance.path
+                    ) {
+                        homeByKind[kindId] = instance;
+                    }
+                });
+                Object.keys(homeByKind).forEach(function (kindId) {
+                    pendingBuilds += 1;
+                    homeStack.push(homeByKind[kindId]);
+                });
+            }
 
             stacks.workspaceStack = workspaceStack;
             workspaceStack = [];
-            INF.LIB.console.log(`Executing onWorkspace():`, stacks.workspaceStack.length);
-            await INF.LIB.Promise.mapSeries(stacks.workspaceStack, async function (args) {
+            if (options.buildOnly !== true) {
 
-                if (args.BuildStep.onWorkspace !== BuildStep.prototype.onWorkspace) {
+                await INF.LIB.Promise.mapSeries(stacks.workspaceStack, async function (args) {
 
-                    const buildResult = new BuildResult(args.BuildWorkspace);
-                    buildResult.kindId = `${NS}:onWorkspace`;
+                    pendingBuilds -= 1;
 
-                    args.console.log('onWorkspace()', buildResult.toString(), args.BuildWorkspace.toString());            
-                    args.console.debug('onWorkspace()', buildResult, args.BuildWorkspace);            
+                    if (args.BuildStep.onWorkspace !== BuildStep.prototype.onWorkspace) {
 
-                    const ret = await args.BuildStep.onWorkspace(buildResult, args.BuildWorkspace);
+                        const buildResult = new BuildResult(args.BuildWorkspace);
+                        buildResult.kindId = `${NS}:onWorkspace`;
 
-                    if (ret !== null) {
-                        await monitorBuildResult(buildResult);
+                        args.console.log('onWorkspace()', buildResult.toString(), args.BuildWorkspace.toString());            
+                        args.console.debug('onWorkspace()', buildResult, args.BuildWorkspace);            
+
+                        const ret = await args.BuildStep.onWorkspace(buildResult, args.BuildWorkspace);
+
+                        if (ret !== null) {
+                            await monitorBuildResult(buildResult);
+                        }
                     }
+                });
+
+                if (onDoneInstructions.length) {
+                    throw new Error(`onWorkspace() instructions may not schedule new 'onDoneInstructions' blocks!`);
                 }
-            });
+            }
 
             stacks.invocationStack = invocationStack;
             invocationStack = [];
 
             stacks.homeStack = homeStack;
             homeStack = [];
-            INF.LIB.console.log(`Executing onHome():`, stacks.homeStack.length);
-            await INF.LIB.Promise.mapSeries(stacks.homeStack, async function (args) {
+            if (options.buildOnly !== true) {
 
-                $BuildHome = new BuildHome(args.BuildStepInstance);
+                await INF.LIB.Promise.mapSeries(stacks.homeStack, async function (args) {
 
-                homeByKind[$BuildHome.kindId].BuildHome = $BuildHome;
+                    pendingBuilds -= 1;
 
-                if (args.BuildStep.onHome !== BuildStep.prototype.onHome) {
+                    $BuildHome = new BuildHome(args.BuildStepInstance);
 
-                    const buildResult = new BuildResult(args.BuildStepInstance);
-                    buildResult.kindId = `${buildResult.kindId}:onHome`;
-                    INF.LIB.LODASH.merge(buildResult.inputPaths, args.BuildStepInstance.inputPaths, buildResult.inputPaths);
+                    homeByKind[$BuildHome.kindId].BuildHome = $BuildHome;
 
-                    args.console.log(INF.LIB.COLORS.white.bold('onHome()'), buildResult.toString(), $BuildHome.toString(), args.BuildWorkspace.toString());
-                    args.console.debug(INF.LIB.COLORS.white.bold('onHome()'), buildResult, $BuildHome, args.BuildWorkspace);
+                    if (args.BuildStep.onHome !== BuildStep.prototype.onHome) {
 
-                    let api = await args.BuildStep.onHome(buildResult, $BuildHome, args.BuildWorkspace);
+                        const buildResult = new BuildResult(args.BuildStepInstance);
+                        buildResult.kindId = `${buildResult.kindId}:onHome`;
+                        INF.LIB.LODASH.merge(buildResult.inputPaths, args.BuildStepInstance.inputPaths, buildResult.inputPaths);
 
-                    if (api !== null) {
+                        args.console.log(INF.LIB.COLORS.white.bold('onHome()'), buildResult.toString(), $BuildHome.toString(), args.BuildWorkspace.toString());
+                        args.console.debug(INF.LIB.COLORS.white.bold('onHome()'), buildResult, $BuildHome, args.BuildWorkspace);
 
-                        api = api || {};
+                        let api = await args.BuildStep.onHome(buildResult, $BuildHome, args.BuildWorkspace);
 
-                        if (!api['path']) {
-                            api['path'] = function () {
-                                return buildResult.path;
-                            };
+                        if (api !== null) {
+
+                            api = api || {};
+
+                            if (!api['path']) {
+                                api['path'] = function () {
+                                    return buildResult.path;
+                                };
+                            }
+                            if (api['BuildResult']) throw new Error(`ToolStep may not return 'BuildResult' result API from 'onHome()!`);
+                            api['BuildResult'] = buildResult;
+
+                            // TODO: Move this into pinf-it in general so it works for all models.
+                            INF.LIB.LODASH.set(exportedAPI, ['invocationsByKindIdAndPath', buildResult.kindId, buildResult.path], api);
+
+                            await monitorBuildResult(buildResult);
                         }
-                        if (api['BuildResult']) throw new Error(`ToolStep may not return 'BuildResult' result API from 'onHome()!`);
-                        api['BuildResult'] = buildResult;
-
-                        // TODO: Move this into pinf-it in general so it works for all models.
-                        INF.LIB.LODASH.set(exportedAPI, ['invocationsByKindIdAndPath', buildResult.kindId, buildResult.path], api);
-
-                        await monitorBuildResult(buildResult);
                     }
-                }
-            });
+                });
 
-            if (instanceStack.length) {
-                throw new Error(`onHome() instructions may only invoke builds. They may not map new interfaces!`);
-            }
-            if (invocationStack.length) {
-                stacks.invocationStack = invocationStack.concat(stacks.invocationStack);
-                invocationStack = [];
+                if (instanceStack.length) {
+                    throw new Error(`onHome() instructions may only invoke builds. They may not map new interfaces!`);
+                }
+                if (onDoneInstructions.length) {
+                    throw new Error(`onHome() instructions may not schedule new 'onDoneInstructions' blocks!`);
+                }
+                if (invocationStack.length) {
+                    stacks.invocationStack = invocationStack.concat(stacks.invocationStack);
+                    invocationStack = [];
+                }
             }
 
-            INF.LIB.console.log(`Executing onInstance():`, stacks.instanceStack.length);
+            if (options.buildOnly !== true) {
 
-            await INF.LIB.Promise.mapSeries(stacks.instanceStack, async function (args) {
+                await INF.LIB.Promise.mapSeries(stacks.instanceStack, async function (args) {
 
-                if (args.BuildStep.onInstance !== BuildStep.prototype.onInstance) {
+                    // NOTE: We do this when we call 'onHome()'
+                    // pendingBuilds -= 1;
 
-                    const kindId = args.BuildStepInstance.kindId;
+                    if (args.BuildStep.onInstance !== BuildStep.prototype.onInstance) {
 
-                    const buildResult = new BuildResult(args.BuildStepInstance);
-                    buildResult.kindId = `${buildResult.kindId}:onInstance`;
-                    INF.LIB.LODASH.merge(buildResult.inputPaths, args.BuildStepInstance.inputPaths, buildResult.inputPaths);
+                        const kindId = args.BuildStepInstance.kindId;
 
-                    args.console.log('onInstance()', buildResult.toString(), args.BuildStepInstance.toString(), homeByKind[kindId].BuildHome.toString(), args.BuildWorkspace.toString());
-                    args.console.debug('onInstance()', buildResult, args.BuildStepInstance, homeByKind[kindId].BuildHome, args.BuildWorkspace);            
+                        const buildResult = new BuildResult(args.BuildStepInstance);
+                        buildResult.kindId = `${buildResult.kindId}:onInstance`;
+                        INF.LIB.LODASH.merge(buildResult.inputPaths, args.BuildStepInstance.inputPaths, buildResult.inputPaths);
 
-                    const ret = await args.BuildStep.onInstance(buildResult, args.BuildStepInstance, homeByKind[kindId].BuildHome, args.BuildWorkspace);
+                        args.console.log('onInstance()', buildResult.toString(), args.BuildStepInstance.toString(), homeByKind[kindId].BuildHome.toString(), args.BuildWorkspace.toString());
+                        args.console.debug('onInstance()', buildResult, args.BuildStepInstance, homeByKind[kindId].BuildHome, args.BuildWorkspace);            
 
-                    if (ret !== null) {
-                        await monitorBuildResult(buildResult);
+                        const ret = await args.BuildStep.onInstance(buildResult, args.BuildStepInstance, homeByKind[kindId].BuildHome, args.BuildWorkspace);
+
+                        if (ret !== null) {
+                            await monitorBuildResult(buildResult);
+                        }
                     }
-                }
-            });
+                });
 
-            if (instanceStack.length) {
-                throw new Error(`onInstance() instructions may only invoke builds. They may not map new interfaces!`);
+                if (instanceStack.length) {
+                    throw new Error(`onInstance() instructions may only invoke builds. They may not map new interfaces!`);
+                }
+                if (onDoneInstructions.length) {
+                    throw new Error(`onInstance() instructions may not schedule new 'onDoneInstructions' blocks!`);
+                }
             }
 
             // ##################################################
@@ -980,9 +1058,10 @@ exports.inf = async function (INF, NS) {
                     invocationStack = [];
                 }
 
-                INF.LIB.console.log(`Executing onBuild():`, stacks.invocationStack.length);
                 await INF.LIB.Promise.mapSeries(stacks.invocationStack, async function (args) {
     
+                    pendingBuilds -= 1;
+
                     if (
                         args.BuildStep.onBuild !== BuildStep.prototype.onBuild ||
                         args.BuildStep.onEveryBuild !== BuildStep.prototype.onEveryBuild
@@ -1014,10 +1093,15 @@ exports.inf = async function (INF, NS) {
                                 // We assume there is no existing cache.
                             }
                         }
-        
-        
+
+
                         async function callBuild (funcName) {
-        
+
+                            // We always reset the 'inputPaths' and 'outputPaths' so that we don't end up
+                            // tracking old ones. The build function is expected to provide all paths every time.
+                            buildResult.inputPaths = INF.LIB.LODASH.merge({}, args.BuildStepInstance.inputPaths);
+                            buildResult.outputPaths = {};
+
                             args.console.log(INF.LIB.COLORS.yellow.bold(`${funcName}()`), buildResult.toString(), args.Build.toString(), args.BuildTarget.toString(), args.BuildStepInstance.toString(), homeByKind[kindId].BuildHome.toString(), args.BuildWorkspace.toString());
                             args.console.debug(INF.LIB.COLORS.yellow.bold(`${funcName}()`), buildResult, args.Build, args.BuildTarget, args.BuildStepInstance, homeByKind[kindId].BuildHome, args.BuildWorkspace);            
             
@@ -1029,7 +1113,7 @@ exports.inf = async function (INF, NS) {
                                 homeByKind[kindId].BuildHome,
                                 args.BuildWorkspace
                             );
-        
+
                             return api;
                         }
         
@@ -1069,6 +1153,7 @@ exports.inf = async function (INF, NS) {
                             // Used to always export an initialized API when booting up.
                             // Maybe start using an 'getAPI' function instead of exporting API from onHome/onBuild?
                             await doBuild('onEveryBuild');
+
                             return;
                         }
         
@@ -1088,6 +1173,8 @@ exports.inf = async function (INF, NS) {
                             // TODO: Move this into pinf-it in general so it works for all models.
                             INF.LIB.LODASH.set(exportedAPI, ['invocationsByKindIdAndPath', buildResult.kindId, args.BuildTarget.path], api);
 
+                            await monitorBuildResult(buildResult);
+
                             return;
                         }
         
@@ -1096,14 +1183,17 @@ exports.inf = async function (INF, NS) {
                 });
     
                 if (instanceStack.length) {
-                    throw new Error(`onBuild() instructions may only invoke builds. They may not map new interfaces!`);
+                    throw new Error(`on[Every]Build() instructions may only invoke builds. They may not map new interfaces!`);
+                }
+                if (onDoneInstructions.length) {
+                    throw new Error(`on[Every]Build() instructions may not schedule new 'onDoneInstructions' blocks!`);
                 }
 
                 if (invocationStack.length) {
                     // The builds above ran instructions that added more builds
                     // which we need to run before we can continue.
 
-                    INF.LIB.console.log(`onBuild() ran instructions that scheduled ${invocationStack.length} more builds.`);
+                    INF.LIB.console.log(`on[Every]Build() ran instructions that scheduled ${invocationStack.length} more builds.`);
 
                     stacks.invocationStack = [];
                     await executeOnBuild();
@@ -1120,9 +1210,9 @@ exports.inf = async function (INF, NS) {
             // # Finalizing model.
             // ##################################################
 
-            INF.LIB.console.log(`Executing onDone():`, stacks.instanceStack.length);
-
             await INF.LIB.Promise.mapSeries(stacks.instanceStack, async function (args) {
+
+                pendingBuilds -= 1;
 
                 if (args.BuildStep.onDone !== BuildStep.prototype.onDone) {
 
@@ -1146,31 +1236,77 @@ exports.inf = async function (INF, NS) {
             if (instanceStack.length) {
                 throw new Error(`onDone() instructions may only invoke builds. They may not map new interfaces!`);
             }
+            if (onDoneInstructions.length) {
+                throw new Error(`onDone() instructions may not schedule new 'onDoneInstructions' blocks!`);
+            }
         }
 
         await executeModel();
 
-        if (ourInvocationIndex === 1) {
 
-            INF.LIB.console.log(`Executing onDoneInstructions:`, onDoneInstructions.length);
+        if (workspaceStack.length) throw new Error(`There are '${workspaceStack.length}' workspaceStack entries at the end of executing the model!`);
+        if (homeStack.length) throw new Error(`There are '${homeStack.length}' homeStack entries at the end of executing the model!`);
+        if (instanceStack.length) throw new Error(`There are '${instanceStack.length}' instanceStack entries at the end of executing the model!`);
+        if (invocationStack.length) throw new Error(`There are '${invocationStack.length}' invocationStack entries at the end of executing the model!`);
 
-            await INF.LIB.Promise.mapSeries(onDoneInstructions, function (args) {
+        
+        if (runnerInstanceIndex === 0) {
 
-                args.console.log('onDoneInstruction handler', args.meta.file, args.meta.line);
-                args.console.debug('onDoneInstruction handler:', args.meta);
+            firstTurnDone = true;
+            if (buildWorkspaceFS) {
+                buildWorkspaceFS._watchPaths();
+            }
 
-                return args.handler();
-            });
+            if (ourOnDoneInstructions.length) {
+                if (options.buildOnly !== true) {
 
-            // TODO: Write build invocation to a new time-based filename and merge into existing root report.
-            const reportPath = INF.LIB.PATH.join($buildWorkspace.path, '.~', NS.replace(/\//g, '~'), 'build-invocations.json');
-            await INF.LIB.FS.outputFile(reportPath, JSON.stringify(buildInvocations, null, 4), 'utf8');
+                    INF.LIB.console.log(`Completed linking BuildSteps and running default Builds. Now running optional and interactive instructions.`);
 
-            INF.LIB.console.debug(`Build invocations::`, JSON.stringify(buildInvocations, null, 4));
+                    await INF.LIB.Promise.mapSeries(ourOnDoneInstructions, async function (args) {
+
+                        args.console.log('Running onDoneInstruction handler', args.meta.file, args.meta.line);
+                        args.console.debug('Running onDoneInstruction handler:', args.meta);
+
+                        await args.handler();
+
+                        // if (workspaceStack.length) throw new Error(`onDoneInstructions() may not add to the workspaceStack!`);
+                        // if (homeStack.length) throw new Error(`onDoneInstructions() may not add to the homeStack!`);
+                        // if (instanceStack.length) throw new Error(`onDoneInstructions() may not add to the instanceStack!`);
+                        // if (invocationStack.length) throw new Error(`onDoneInstructions() may not add to the invocationStack!`);
+                    });
+
+                    if (onDoneInstructions.length) {
+                        throw new Error(`'onDoneInstructions' blocks may not schedule new 'onDoneInstructions' blocks!`);
+                    }
+
+                    INF.LIB.console.log(`Completed running optional and interactive instructions.`);
+                }
+            }
+
+
+            if ($buildWorkspace) {
+                // INF.LIB.console.debug(`Build invocations:`, JSON.stringify(buildInvocations, null, 4));
+                // TODO: Write build invocation to a new time-based filename and merge into existing root report.
+                const reportPath = INF.LIB.PATH.join($buildWorkspace.path, '.~', NS.replace(/\//g, '~'), 'build-invocations.json');
+                await INF.LIB.FS.outputFile(reportPath, JSON.stringify(buildInvocations, null, 4), 'utf8');
+                // TODO: Use multi-process safe FS writer via a storage adapter.
+            }
+
+
+            if (pendingBuilds > 0) {
+                INF.LIB.console.log(`Re-executing model as more builds were scheduled by onDoneInstructions():`, pendingBuilds);
+
+                await onProcessingDoneHandler();
+            }
+
+            if (ourInvocationIndex === 1) {
+                if (options.buildOnly !== true) {
+                    INF.LIB.console.log(`Completed model execution.`);
+                }
+            }
         }
-
-//        modelProcessingDeferred.resolve();
-    });
+    };
+    INF.registerOnProcessingDoneHandler(onProcessingDoneHandler);
 
     return {
 
@@ -1186,14 +1322,34 @@ exports.inf = async function (INF, NS) {
                 return true;
             }
 
+            if (pointer === 'waitForAnyKey()') {
+ 
+ 
+                // This pauses instruction invocation. We may already have executed
+                // instructions that scheduled new builds against the model. We need
+                // to execute the model to process all pending builds before we wait.
+
+                await onProcessingDoneHandler(null, {
+                    buildOnly: true
+                });
+
+                await INF.LIB.INQUIRER.prompt([
+                    {
+                        type: 'input',
+                        name: 'question',
+                        message: `Press any key to exit dev server.\n`
+                    }
+                ]);
+
+                return true;
+            }
+
             if (pointer === 'onDone()') {
                 onDoneInstructions.push({
                     console: INF.LIB.console,
                     meta: value.meta,
                     handler: async function () {
-                        await options.callerNamespace.componentInitContext.load(value, {
-                            _pinf_it_targetPrefix: pointer
-                        });
+                        await options.callerNamespace.componentInitContext.load(value);
                     }
                 });
                 return true;
@@ -1203,20 +1359,30 @@ exports.inf = async function (INF, NS) {
                     console: INF.LIB.console,
                     meta: value.meta,
                     handler: async function () {
-
-//                        await modelProcessingDeferred.promise;
-
                         const optionName = pointer.match(/^onOption\(\)\s(.+)$/)[1];
                         if (INF.options[optionName]) {
                             // await INF.load(value);
-                            await options.callerNamespace.componentInitContext.load(value, {
-                                _pinf_it_targetPrefix: pointer
-                            });
+                            await options.callerNamespace.componentInitContext.load(value);
                         }
                     }
                 });
                 return true;
             }
+            if (/^onCommand\(\)\s/.test(pointer)) {
+                onDoneInstructions.push({
+                    console: INF.LIB.console,
+                    meta: value.meta,
+                    handler: async function () {
+                        const commandName = pointer.match(/^onCommand\(\)\s(.+)$/)[1];
+                        if (INF.options._[0] === commandName) {
+                            // await INF.load(value);
+                            await options.callerNamespace.componentInitContext.load(value);
+                        }
+                    }
+                });
+                return true;
+            }
+
             if (pointer === 'watch()') {
                 workspaceEvents.emit("watch");
                 return true;

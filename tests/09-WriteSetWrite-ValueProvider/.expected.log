@@ -15,6 +15,8 @@ console.log('Hello World!', '1');
 [90m[1m[pinf.it][builder.com/template/v0:templateCompiler:null][22m[39m [90m[1mTemplate update count:[22m[39m [90m[1m1[22m[39m
 [34m[1m[pinf.it][22m[39m [34m[1mWriting to: TeStLoCaLiZeD/.~/template.js[22m[39m
 [34m[1m[pinf.it][22m[39m [34m[1mWriting to: TeStLoCaLiZeD/.~/app.js[22m[39m
+[90m[1m[pinf.it][22m[39m [90m[1mProcessing done. Executing model.[22m[39m
+[90m[1m[pinf.it][22m[39m [90m[1mCompleted model execution.[22m[39m
 [34m[1m[pinf.it][builder.com/template/v0:templateCompiler:null][22m[39m [34m[1mUpdated template[22m[39m
 [90m[1m[pinf.it][builder.com/template/v0:templateCompiler:null][22m[39m [90m[1mTemplate update count:[22m[39m [90m[1m2[22m[39m
 [34m[1m[pinf.it][22m[39m [34m[1mWriting to: TeStLoCaLiZeD/.~/template.js[22m[39m

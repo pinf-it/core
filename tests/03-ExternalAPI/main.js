@@ -596,8 +596,15 @@ describe('core', function () {
             console.log('Duration:', (endTime - startTime), 'ms');
 
 
+            const inputPaths = {};
+            const outputPaths = {};
+
             const router = await PINF_IT({
-                cwd: __dirname
+                cwd: __dirname,
+                registries: {
+                    inputPaths: inputPaths,
+                    outputPaths: outputPaths
+                }
             }).runToolForModel(
                 'gi0.PINF.it/build/v0',
                 '/.dist',
@@ -612,6 +619,9 @@ describe('core', function () {
                     'router'
                 ]
             );
+
+            console.log("inputPaths:", inputPaths);
+            console.log("outputPaths:", outputPaths);
 
             let body = null;
             router(null, {

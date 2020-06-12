@@ -24,7 +24,11 @@
 [34m[1m[pinf.it][22m[39m [34m[1mMounting route app to: TeStLoCaLiZeD/[22m[39m
 [34m[1m[pinf.it][gi0.PINF.it/builder/v1][22m[39m [34m[1mWriting to:[22m[39m [34m[1mTeStLoCaLiZeD/.dist/path.txt[22m[39m
 [34m[1m[pinf.it][gi0.PINF.it/builder/v1][22m[39m [34m[1mWriting to:[22m[39m [34m[1mTeStLoCaLiZeD/.dist/path.txt[22m[39m
-[34m[1m[pinf.it][gi0.PINF.it/builder/v1][22m[39m [34m[1mWriting to:[22m[39m [34m[1mTeStLoCaLiZeD/.dist/path.txt[22m[39m
+inputPaths: {
+  'TeStLoCaLiZeD/.~/gi0.PINF.it/core/runToolForModel/f109005ecab3d83a25abfc075a6e4880918b26b6.inf.json': 'fce9c1b90a492257c4a94b008b9b073fa0605047',
+  'TeStLoCaLiZeD/#!/gi0.PINF.it/builder1.inf.js': '26aec7232dc3c8b9a148d04e8d01a2fd8e78ae76'
+}
+outputPaths: {}
       runDoc()
 [builder.com] inf(): builder/v0
 [gi0-PINF-it] register(): gi0-PINF-it {
