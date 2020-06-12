@@ -1,13 +1,13 @@
 {
   "uid": "gi0.PINF.it/core",
   "name": "@pinf-it/core",
-  "version": "0.0.1-pre.2",
+  "version": "0.1.0-pre.0",
   "bin": {
     "pinf.it": "pinf.it.js"
   },
   "main": "pinf.it.js",
   "dependencies": {
-    "@pinf-it/inf": "^0.2.0-pre.18",
+    "@pinf-it/inf": "^0.3.0-pre.0",
     "moment": "^2.24.0",
     "uuid": "^3.3.3",
     "inquirer": "^7.0.3",
@@ -19,7 +19,7 @@
     "traverse": "^0.6.6"
   },
   "devDependencies": {
-    "bash.origin.test": "^0.2.0-pre.11",
+    "bash.origin.test": "^0.3.0-pre.0",
     "connect": "^3.7.0",
     "serve-static": "^1.14.1",
     "mocha": "^7.0.1"
